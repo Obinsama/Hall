@@ -1,0 +1,25 @@
+.table a[title='delete'],a[title='block']{
+
+    color: red;
+
+
+}
+.infinite-spin, .settings-sidebar .sidebar-body .settings-sidebar-toggler svg{
+    animation-name: zoomIn !important;
+}
+form button,form submit, form input{
+    border: none;
+}
+form a{
+    color: red!important;
+}
+.pull-right{
+
+}
+.no-margin{
+    margin: auto!important;
+}
+.custom-search{
+    border-radius: 0;
+padding: 4.5px 10px;
+}

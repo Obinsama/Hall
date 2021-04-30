@@ -1,0 +1,63 @@
+<template>
+    <div class="sidebar-body ps ps--active-y">
+        <ul class="nav">
+            <li class="nav-item nav-category">Administration</li>
+            <li class="nav-item " :class="{active: menu==='home'}" @click.prevent="menu='home'">
+                <router-link to="/" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Tableau de bord</span>
+                </router-link>
+            </li>
+            <li class="nav-item " :class="{active: menu==='personnel'}" @click.prevent="menu='personnel'">
+                <router-link to="/users" class="nav-link">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Gestion du Personnel</span>
+                </router-link>
+            </li>
+            <li class="nav-item "  :class="{active: menu==='equipement'}" @click.prevent="menu='equipement'">
+                <router-link to="/equipements" class="nav-link">
+                    <i class="link-icon" data-feather="truck"></i>
+                    <span class="link-title">Gestion Equipements</span>
+                </router-link>
+            </li>
+            <li class="nav-item " :class="{active: menu==='commande'}" @click.prevent="menu='commande'">
+                <router-link to="/commandes" class="nav-link">
+                    <i class="link-icon" data-feather="clipboard"></i>
+                    <span class="link-title">Gestion Commandes</span>
+                </router-link>
+            </li>
+            <li class="nav-item nav-category">Services</li>
+            <li class="nav-item " :class="{active: menu==='vente'}" @click.prevent="menu='vente'">
+                <router-link to="/ventes" class="nav-link">
+                    <i class="link-icon" data-feather="shopping-cart"></i>
+                    <span class="link-title">Gestion Ventes</span>
+                </router-link>
+            </li>
+            <li class="nav-item " :class="{active: menu==='prestation'}" @click.prevent="menu='prestation'">
+                <router-link to="/prestations" class="nav-link">
+                    <i class="link-icon" data-feather="package"></i>
+                    <span class="link-title">Gestion Prestations</span>
+                </router-link>
+            </li>
+
+        </ul>
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 592px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 500px;"></div></div></div>
+</template>
+
+<script>
+    export default {
+        name: "MenuTemplate",
+        props:{
+            route: String,
+        },
+        data(){
+            return {
+                menu:'home',
+            };
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
