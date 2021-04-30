@@ -140,7 +140,6 @@
                     </div>
                     <div class="modal-body">
                         <form>
-<!--                          
                             <div class="form-group">
                                 <label for="cart" class="col-form-label">Total Achats</label>
                                 <input type="text" class="form-control" id="cart"
@@ -160,11 +159,6 @@
                                 <label for="statut" class="col-form-label">Statut</label>
                                 <input type="text" class="form-control" id="statut" v-model="Vente.statut" disabled>
                             </div>
-<!--                            <div class="form-group">-->
-<!--                                <label for="description" class="col-form-label">Description</label>-->
-<!--                                <textarea class="form-control" name="description" disabled id="description" cols="30"-->
-<!--                                          rows="10" v-model="Vente.Equipement.description"></textarea>-->
-<!--                            </div>-->
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -206,12 +200,8 @@
             },
             vendreEquipements() {
                 let vente = this.$store.getters.getVente;
-                let facture = this.$store.getters.getFacture;
                 this.$store.dispatch('saveFactureData', vente)
-                // this.$store.commit('CLEAR_CART');
-                // this.$store.dispatch('allEquipementFromDatabase');
-                // this.getResults();
-                // this.$store.dispatch('saveFactureData',facture)
+
             },
             afficherEquipement(equipement) {
                 // this.$router.replace('/')
@@ -221,7 +211,6 @@
             }
         },computed: {
             liste_equipements() {
-                // console.log(this.$store.getters.getEquipementList)
                 return this.$store.getters.getEquipementList;
             },
             Equipement() {

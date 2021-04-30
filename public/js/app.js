@@ -81179,8 +81179,6 @@ var Vente = function () {
         getValeurAchats: function getValeurAchats(state) {
             var somme = 0;
             state.Vente.Equipements.forEach(function (element) {
-                // console.log('element log: ')
-                // console.log(element)
                 somme = somme + parseInt(element.valeur);
             });
 
@@ -81274,12 +81272,7 @@ var Vente = function () {
             });
         },
         updateEquipementData: function updateEquipementData(context, data) {
-            //context.commit("EDIT_RESA", data); //categories will be run from mutation
-            axios.put('/equipements/' + data.id, data).then(function (response) {
-                // console.log(response);
-                // context.commit("EDIT_EQUIPEMENT_LIST", response.data);//categories will be run from mutation
-                // this.reservations = response.data;
-            }, function (error) {
+            axios.put('/equipements/' + data.id, data).then(function (response) {}, function (error) {
                 console.log(error);
             });
         },
@@ -81293,7 +81286,6 @@ var Vente = function () {
         },
         confirmVente: function confirmVente(context, data) {
             axios.put('/factures/' + data.id, data).then(function (response) {
-                // this.reservations = response.data;
                 context.dispatch("getVentesResultsFromDataBase"); //categories will be run from mutation
             }, function (error) {
                 console.log(error);
@@ -81301,7 +81293,6 @@ var Vente = function () {
         },
         getEquipementResultsFromDataBase: function getEquipementResultsFromDataBase(context, data) {
             axios.get('/equipements?page=' + data).then(function (response) {
-                // this.reservations = response.data;
                 response.data.data.forEach(function (element) {
                     element.carted = false;
                 });
@@ -81322,9 +81313,6 @@ var Vente = function () {
     },
 
     mutations: {
-        categories: function categories(state, data) {
-            return state.category = data;
-        },
         EDIT_EQUIPEMENT: function EDIT_EQUIPEMENT(state, data) {
             return state.Equipement = data;
         },
@@ -81368,12 +81356,10 @@ var Vente = function () {
         },
         ADD_TO_CART: function ADD_TO_CART(state, data) {
             state.Vente.Equipements.push(data);
-            // state.Vente.montant+=data.valeur;
             state.Vente.cout += data.valeur;
             return state.Vente;
         },
         UPDATE_FACTURE: function UPDATE_FACTURE(state, data) {
-            // console.log(data);
             state.Facture.service_id = data.service_id;
             state.Facture = data;
         },
@@ -82318,7 +82304,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.action{*/\n/*    display: inline-block !important;*/\n/*}*/\ntd > a[data-v-ab09977c] {\n    display: inline-block !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*.action{*/\n/*    display: inline-block !important;*/\n/*}*/\ntd > a[data-v-ab09977c] {\n    display: inline-block !important;\n}\n", ""]);
 
 // exports
 
@@ -82333,12 +82319,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_feather_icon__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_feather_icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_feather_icon__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -82544,12 +82524,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         vendreEquipements: function vendreEquipements() {
             var vente = this.$store.getters.getVente;
-            var facture = this.$store.getters.getFacture;
             this.$store.dispatch('saveFactureData', vente);
-            // this.$store.commit('CLEAR_CART');
-            // this.$store.dispatch('allEquipementFromDatabase');
-            // this.getResults();
-            // this.$store.dispatch('saveFactureData',facture)
         },
         afficherEquipement: function afficherEquipement(equipement) {
             // this.$router.replace('/')
@@ -82559,7 +82534,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }, computed: {
         liste_equipements: function liste_equipements() {
-            // console.log(this.$store.getters.getEquipementList)
             return this.$store.getters.getEquipementList;
         },
         Equipement: function Equipement() {
@@ -82921,7 +82895,160 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(2),
               _vm._v(" "),
-              _vm._m(3),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "col-form-label", attrs: { for: "cart" } },
+                      [_vm._v("Total Achats")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: (_vm.Facture.cout = _vm.Vente.cout + " FCFA"),
+                          expression: "Facture.cout=Vente.cout+' FCFA'"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "cart", disabled: "" },
+                      domProps: {
+                        value: (_vm.Facture.cout = _vm.Vente.cout + " FCFA")
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            (_vm.Facture.cout = _vm.Vente),
+                            "cout+' FCFA'",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "montant" }
+                      },
+                      [_vm._v("Versement")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: (_vm.Facture.montant = _vm.Vente.montant),
+                          expression: "Facture.montant=Vente.montant"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "montant" },
+                      domProps: {
+                        value: (_vm.Facture.montant = _vm.Vente.montant)
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            (_vm.Facture.montant = _vm.Vente),
+                            "montant",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "reste" }
+                      },
+                      [_vm._v("Reste")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: (_vm.Facture.reste = _vm.Vente.reste =
+                            _vm.Vente.montant - _vm.Vente.cout),
+                          expression:
+                            "Facture.reste=Vente.reste=Vente.montant-Vente.cout"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "reste", disabled: "" },
+                      domProps: {
+                        value: (_vm.Facture.reste = _vm.Vente.reste =
+                          _vm.Vente.montant - _vm.Vente.cout)
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            (_vm.Facture.reste = _vm.Vente.reste =
+                              _vm.Vente.montant - _vm.Vente),
+                            "cout",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-form-label",
+                        attrs: { for: "statut" }
+                      },
+                      [_vm._v("Statut")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Vente.statut,
+                          expression: "Vente.statut"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: "statut", disabled: "" },
+                      domProps: { value: _vm.Vente.statut },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.Vente, "statut", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -83016,12 +83143,6 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [_c("form")])
   }
 ]
 render._withStripped = true
@@ -83143,7 +83264,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -83156,62 +83277,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

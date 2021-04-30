@@ -85,69 +85,13 @@
                                     <td>{{vente.nom_equipement}}</td>
                                     <td>{{vente.valeur}} FCFA</td>
                                     <td>{{vente.etat}} </td>
-<!--                                    <td><span class="badge badge-danger" v-show="vente.statut=='annule'">Annulé</span>-->
-<!--                                        <span class="badge badge-success" v-show="vente.statut=='termine'">Terminé</span>-->
-<!--                                        <span class="badge badge-warning" v-show="vente.statut=='en cours'">En cours</span>-->
-<!--                                    </td>-->
-<!--                                    <td >-->
-<!--                                        <div class="px-0" style="text-align:center">-->
-<!--                                            <a class="mx-2 " href="#" title="Annuler" @click.prevent="annulerVente(vente)" v-show="vente.statut=='en cours'">-->
-<!--                                                <feather-icon type="x" stroke="red" ></feather-icon>-->
-<!--                                            </a>-->
-<!--                                            <a class="mx-2" href="#" title="Confirmer"  @click.prevent="confirmerVente(vente)"  v-show="vente.statut=='en cours'">-->
-<!--                                                <feather-icon type="check" stroke="green"></feather-icon>-->
-<!--                                            </a>-->
-<!--                                            <router-link class=" mx-2" href="#" title="Imprimer" to="/impression" @click.prevent="printbill" v-show="vente.statut=='termine'">-->
-<!--                                                <span><feather-icon type="printer" stroke="blue" ></feather-icon></span>-->
-<!--                                            </router-link>-->
-<!--                                            <a class="mx-2" href="#" title="Details" @click.prevent="updateVente(vente)"  data-toggle="modal" data-target="#factureModal">-->
-<!--                                                <span><feather-icon type="eye" stroke="#6a246a" ></feather-icon></span>-->
-<!--                                            </a>-->
-<!--                                            <a class="mx-2" href="#" title="More...." @click.prevent="detailsFacture(vente)"  >-->
-<!--                                                <span><feather-icon type="eye" stroke="#6a246a" ></feather-icon></span>-->
-<!--                                            </a>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
                                 </tr>
                                 </tbody>
                             </table>
-<!--                            <pagination :data="liste_ventes" @pagination-change-page="getResults" class="mt-5 mx-auto " ></pagination>-->
                         </div>
-<!--                        <form>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="equipement_id" class="col-form-label">Numero Equipement</label>-->
-<!--                                <input type="text" class="form-control" id="equipement_id" disabled v-model="Facture.equipement_id">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="equipement_nom" class="col-form-label">Nom Equipement</label>-->
-<!--                                <input type="text" class="form-control" id="equipement_nom" disabled v-model="Facture.nom_equipement">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="type" class="col-form-label">Valeur</label>-->
-<!--                                <input type="text" class="form-control" id="type" v-model="Facture.cout" disabled>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="montant" class="col-form-label">Versement</label>-->
-<!--                                <input type="text" class="form-control" id="montant" v-model="Facture.montant" disabled>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="reste" class="col-form-label">Reste</label>-->
-<!--                                <input type="text" class="form-control" id="reste" v-model="Facture.reste" disabled>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="statut" class="col-form-label">Statut</label>-->
-<!--                                <input type="text" class="form-control" id="statut" v-model="Facture.statut" disabled>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="description" class="col-form-label">Description</label>-->
-<!--                                <textarea class="form-control" name="description" disabled id="description" cols="30" rows="10" v-model="Facture.description"></textarea>-->
-<!--                            </div>-->
-<!--                        </form>-->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-<!--                        <button type="button" class="btn btn-danger" data-dismiss="modal" @click.prevent="annulerVente" v-show="Facture.statut=='en cours'">Annuler</button>-->
-<!--                        <button type="button" class="btn btn-success" data-dismiss="modal" @click.prevent="confirmerVente" v-show="Facture.statut=='en cours'">Confirmer</button>-->
                     </div>
                 </div>
             </div>

@@ -115,16 +115,14 @@ export default {
         },
         getValeurAchats(state){
             let somme=0;
-           state.Vente.Equipements.forEach(function (element) {
-               // console.log('element log: ')
-               // console.log(element)
-               somme=somme+parseInt(element.valeur);
-           });
+            state.Vente.Equipements.forEach(function (element) {
+                somme=somme+parseInt(element.valeur);
+            });
 
             return somme
         },getVentesFacture(state){
             return state.Vente.Equipements
-}
+        }
     },
     actions: {
         allEquipementFromDatabase(context) {
@@ -173,7 +171,7 @@ export default {
                 .then((response) => {
                     context.commit('UPDATE_VENTE',response.data);
                     // context.commit("LOAD_PRESTATION_LIST", response.data) //categories will be run from mutation
-                console.log(response);
+                    console.log(response);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -206,7 +204,7 @@ export default {
             axios.post('/factures', data).then((response) => {
                 console.log('facture request')
                 console.log(response)
-               context.dispatch('saveVenteData',response)
+                context.dispatch('saveVenteData',response)
             }, (error) => {
                 console.log(error)
             });
@@ -221,11 +219,7 @@ export default {
             });
         },
         updateEquipementData(context, data) {
-            //context.commit("EDIT_RESA", data); //categories will be run from mutation
             axios.put('/equipements/' + data.id, data).then((response) => {
-                // console.log(response);
-                // context.commit("EDIT_EQUIPEMENT_LIST", response.data);//categories will be run from mutation
-                // this.reservations = response.data;
             }, (error) => {
                 console.log(error)
             });
@@ -240,7 +234,6 @@ export default {
         },
         confirmVente(context, data) {
             axios.put('/factures/' + data.id, data).then((response) => {
-                // this.reservations = response.data;
                 context.dispatch("getVentesResultsFromDataBase") //categories will be run from mutation
             }, (error) => {
                 console.log(error)
@@ -248,7 +241,6 @@ export default {
         },
         getEquipementResultsFromDataBase(context, data) {
             axios.get('/equipements?page=' + data).then((response) => {
-                // this.reservations = response.data;
                 response.data.data.forEach(function(element){
                     element.carted=false
                 });
@@ -269,9 +261,6 @@ export default {
     },
 
     mutations: {
-        categories(state, data) {
-            return state.category = data
-        },
         EDIT_EQUIPEMENT(state, data) {
             return state.Equipement = data;
         },
@@ -291,7 +280,7 @@ export default {
             return state.ListeEquipements.data.push(data);
         },
         REMOVE_FROM_EQUIPEMENT_LIST(state, data) {
-             state.ListeEquipements.data.filter(function(obj){
+            state.ListeEquipements.data.filter(function(obj){
                 return obj.id==data.id;
             });
         },
@@ -315,12 +304,10 @@ export default {
         },
         ADD_TO_CART(state, data) {
             state.Vente.Equipements.push(data);
-            // state.Vente.montant+=data.valeur;
             state.Vente.cout+=data.valeur;
             return state.Vente;
         },
         UPDATE_FACTURE(state,data){
-            // console.log(data);
             state.Facture.service_id=data.service_id;
             state.Facture=data;
         },
