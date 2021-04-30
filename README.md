@@ -1,6 +1,6 @@
 # Laravel  Hall 🛰
 
-
+still writing the official doc...
 
 ## Usage
 
