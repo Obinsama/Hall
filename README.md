@@ -1,8 +1,6 @@
 # Laravel  Hall 🛰
 
-This is a demo application built with the [Laravel WebSockets](https://github.com/beyondcode/laravel-websockets) package.
 
-Be sure to check out the [official documentation](https://docs.beyondco.de/laravel-websockets/).
 
 ## Usage
 
