@@ -37,12 +37,12 @@
                                             <a class="mx-2" href="#" title="Confirmer"  @click.prevent="confirmerVente(vente)"  v-show="vente.statut=='en cours'">
                                                 <feather-icon type="check" stroke="green"></feather-icon>
                                             </a>
-                                            <router-link class=" mx-2" href="#" title="Imprimer" to="/impression" @click.prevent="printbill" v-show="vente.statut=='termine'">
+                                            <router-link class=" mx-2" href="#" title="Imprimer" :to="'/impression/'+vente.id" @click.prevent="printBill(vente)" v-show="vente.statut=='termine'">
                                                 <span><feather-icon type="printer" stroke="blue" ></feather-icon></span>
                                             </router-link>
-<!--                                            <a class="mx-2" href="#" title="Details" @click.prevent="updateVente(vente)"  data-toggle="modal" data-target="#factureModal">-->
-<!--                                                <span><feather-icon type="eye" stroke="#6a246a" ></feather-icon></span>-->
-<!--                                            </a>-->
+                                            <!--                                            <a class="mx-2" href="#" title="Details" @click.prevent="updateVente(vente)"  data-toggle="modal" data-target="#factureModal">-->
+                                            <!--                                                <span><feather-icon type="eye" stroke="#6a246a" ></feather-icon></span>-->
+                                            <!--                                            </a>-->
                                             <a class="mx-2" href="#" title="Details" @click.prevent="detailsFacture(vente)" data-toggle="modal" data-target="#factureModal" >
                                                 <span><feather-icon type="eye" stroke="#6a246a" ></feather-icon></span>
                                             </a>
@@ -75,7 +75,7 @@
                                     <th>NOM</th>
                                     <th>VALEUR</th>
                                     <th>ETAT</th>
-<!--                                    <th>Actions</th>-->
+                                    <!--                                    <th>Actions</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +131,16 @@
             detailsFacture(vente){
                 console.log(vente)
                 this.$store.dispatch('allVentesFromFacture',vente)
-            }
+            },
+            // printBill(vente){
+            //     let id={
+            //         value:vente
+            //     };
+            //   this.$route.push({
+            //       name:'Impression',
+            //       params:{id}
+            //   });
+            // }
         },
         computed:{
             liste_ventes(){
@@ -141,10 +150,7 @@
                 return this.$store.getters.getFacture;
             },
             VentesFacture(){
-                console.log('ventes')
-                console.log(this.$store.getters.getVentesFacture)
                 return this.$store.getters.getVentesFacture;
-
             },
             Ventes(){
                 return this.$store.getters.getVente;

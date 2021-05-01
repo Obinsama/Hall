@@ -123,7 +123,7 @@ class FacturesController extends Controller
         $facture->statut='annule';
         $facture->save();
     }
-    public function details(Request $request,$id){
+    public function details($id){
         $ventes=DB::table('factures')
             ->select('equipements.id','nom_equipement','equipements.type','valeur','equipements.description','equipements.caracteristiques','equipements.etat')
             ->join('services','factures.id','=','services.facture_id')
@@ -132,6 +132,25 @@ class FacturesController extends Controller
             ->where('services.facture_id',$id)
             ->get();
         $response=$ventes;
+//        $response=json_decode($request->getContent(),false);
+        return response()->json($response);
+    }
+    public function data($id){
+        $ventes=DB::table('factures')
+            ->select('equipements.id','nom_equipement','equipements.type','valeur','equipements.etat')
+            ->join('services','factures.id','=','services.facture_id')
+            ->join('ventes','services.id','=','ventes.service_id')
+            ->join('equipements','equipements.id','=','ventes.equipement_id')
+            ->where('services.facture_id',$id)
+            ->get();
+        $facture=DB::table('factures')
+            ->select('factures.id','factures.ref','factures.montant','factures.reste','date_facturation','date_limite')
+            ->join('services','factures.id','=','services.facture_id')
+            ->join('ventes','services.id','=','ventes.service_id')
+            ->join('equipements','equipements.id','=','ventes.equipement_id')
+            ->where('services.facture_id',$id)
+            ->get();
+        $response=['vente'=>$ventes,'facture'=>$facture];
 //        $response=json_decode($request->getContent(),false);
         return response()->json($response);
     }

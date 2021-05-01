@@ -62,7 +62,7 @@ const routes = [{
     component: GestionPrestations
 },
     {
-        path: '/impression',
+        path: '/impression/:id',
         component: Impression
     }
 ];

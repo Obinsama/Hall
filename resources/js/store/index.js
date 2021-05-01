@@ -61,6 +61,7 @@ export default {
         Panier:[],
         Commande: {},
         Prestation: {},
+        FactureData:{},
         Facture: {
             service_id:'',
             Vente: {
@@ -120,8 +121,12 @@ export default {
             });
 
             return somme
-        },getVentesFacture(state){
+        },
+        getVentesFacture(state){
             return state.Vente.Equipements
+        },
+        getFactureData(state){
+            return state.FactureData;
         }
     },
     actions: {
@@ -172,6 +177,16 @@ export default {
                     context.commit('UPDATE_VENTE',response.data);
                     // context.commit("LOAD_PRESTATION_LIST", response.data) //categories will be run from mutation
                     console.log(response);
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        allFactureData(context,data){
+            axios.get("/factures/data/"+ data,data)
+                .then((response) => {
+                    console.log('response',response.data)
+                    context.commit('UPDATE_FACTURE_DATA',response.data);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -310,6 +325,9 @@ export default {
         UPDATE_FACTURE(state,data){
             state.Facture.service_id=data.service_id;
             state.Facture=data;
+        },
+        UPDATE_FACTURE_DATA(state,data){
+            state.FactureData=data;
         },
         // ADD_TO_CART(state,data){
         //     let x=new Vente();

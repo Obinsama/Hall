@@ -48,4 +48,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('factures', 'FacturesController');
     Route::resource('ventes', 'VentesController');
     Route::get('factures/details/{id}', 'FacturesController@details');
+    Route::get('factures/data/{id}', 'FacturesController@data');
 });
