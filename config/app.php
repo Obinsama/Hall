@@ -174,6 +174,7 @@ return [
         Hall\Providers\BroadcastServiceProvider::class,
         Hall\Providers\EventServiceProvider::class,
         Hall\Providers\RouteServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

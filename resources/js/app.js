@@ -32,6 +32,7 @@ import GestionEquipements from "./components/GestionEquipements";
 import GestionCommandes from "./components/GestionCommandes";
 import GestionVentes from "./components/GestionVentes";
 import GestionPrestations from "./components/GestionPrestations";
+import GestionPersonnel from "./components/GestionPersonnel";
 import Impression from "./components/Impression";
 
 const store = new Vuex.Store(
@@ -60,10 +61,13 @@ const routes = [{
 }, {
     path: '/prestations',
     component: GestionPrestations
-},
-    {
+}, {
         path: '/impression/:id',
         component: Impression
+    },
+    {
+        path:'/personnel',
+        component:GestionPersonnel
     }
 ];
 

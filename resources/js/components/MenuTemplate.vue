@@ -1,4 +1,5 @@
 <template>
+<!--    TODO eviter de deranger les gens-->
     <div class="sidebar-body ps ps--active-y">
         <ul class="nav">
             <li class="nav-item nav-category">Administration</li>
@@ -9,7 +10,7 @@
                 </router-link>
             </li>
             <li class="nav-item " :class="{active: menu==='personnel'}" @click.prevent="menu='personnel'">
-                <router-link to="/users" class="nav-link">
+                <router-link to="/personnel" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">Gestion du Personnel</span>
                 </router-link>

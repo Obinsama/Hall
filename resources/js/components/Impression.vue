@@ -23,7 +23,7 @@
                                 <h4 class="font-weight-medium text-uppercase text-right mt-4 mb-2">Facture</h4>
                                 <h6 class="text-right mb-5 pb-4"><code># {{Produits.facture[0].ref}}</code></h6>
                                 <p class="text-right mb-1">Total a Payer</p>
-                                <h4 class="text-right font-weight-normal">{{Produits.facture[0].montant}} FCFA</h4>
+                                <h4 class="text-right font-weight-normal">{{ (Produits.facture[0].montant).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </h4>
                                 <h6 class="mb-0 mt-3 text-right font-weight-normal mb-2"><span class="text-muted">Date Facturation :</span> {{Produits.facture[0].date_facturation}}</h6>
                                 <h6 class="text-right font-weight-normal"><span class="text-muted">Date Limite :</span> {{Produits.facture[0].date_limite}}</h6>
                             </div>
@@ -45,12 +45,12 @@
                                         <td class="text-left">{{item.id}}</td>
                                         <td class="text-left">{{item.nom_equipement}}</td>
                                         <td>{{item.type}}</td>
-                                        <td>{{item.valeur}}</td>
+                                        <td>{{(item.valeur).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                         <td>{{item.etat}}</td>
                                     </tr>
                                     <tr class="font-weight-medium" >
                                         <td style="font-size:25px" >TOTAL</td>
-                                        <td class="text-right" colspan="4" style="font-size:25px" >{{Produits.facture[0].montant}} FCFA</td>
+                                        <td class="text-right" colspan="4" style="font-size:25px" >{{(Produits.facture[0].montant ).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </td>
                                     </tr>
                                     </tbody>
                                 </table>

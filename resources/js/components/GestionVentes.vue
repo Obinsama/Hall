@@ -1,5 +1,9 @@
 <template>
     <div class="page-content col-12 col-md-12">
+        <div>
+            <h4 class="mb-3 mb-md-0">Gestion des ventes</h4>
+        </div>
+        <br>
         <div class="row col-md-12">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -23,8 +27,8 @@
 
                                     <td>{{vente.id}}</td>
                                     <td>{{vente.ref}}</td>
-                                    <td>{{vente.montant}}</td>
-                                    <td>{{vente.reste}} FCFA</td>
+                                    <td>{{(vente.montant).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
+                                    <td>{{(vente.reste ).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </td>
                                     <td><span class="badge badge-danger" v-show="vente.statut=='annule'">Annulé</span>
                                         <span class="badge badge-success" v-show="vente.statut=='termine'">Terminé</span>
                                         <span class="badge badge-warning" v-show="vente.statut=='en cours'">En cours</span>

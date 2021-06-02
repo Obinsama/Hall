@@ -1,7 +1,8 @@
 <template>
 
 <div>
-    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Ajout Equipement</button>
+
+    <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal" @click="clearItem" data-whatever="@mdo">Ajout Equipement</button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -62,7 +63,11 @@
     export default {
         name: "AjoutEquipement",
         methods:{
+            clearItem(){
+                this.$store.commit("CLEAR_ITEM")
+            },
             saveEquipement(){
+
                 console.log(this.$store.getters.getEquipement.id)
                let equipement=this.$store.getters.getEquipement;
                 if(equipement.id){

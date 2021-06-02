@@ -1,7 +1,7 @@
-class Vente{
-    constructor(){
-        this.Equipement={
-            id:'',
+class Vente {
+    constructor() {
+        this.Equipement = {
+            id: '',
             nom_equipement: 'machette',
             type: 'outil',
             valeur: 2000,
@@ -9,29 +9,31 @@ class Vente{
             description: 'aaaaaaa',
             caracteristiques: 'aaaabbb',
             duree_de_vie: 365,
-            carted:false
+            carted: false
         };
-        this.cout= 25000;
-        this.montant= 0;
-        this.reste= 0;
-        this.statut= 'en cours';
+        this.cout = 25000;
+        this.montant = 0;
+        this.reste = 0;
+        this.statut = 'en cours';
     };
-    update(data){
-        this.Equipement.id= data.Equipement.id;
-        this.Equipement.nom_equipement= data.Equipement.nom_equipement;
-        this.Equipement.type= data.Equipement.type;
-        this.Equipement.valeur= data.Equipement.valeur;
-        this.Equipement.etat= data.Equipement.etat;
-        this.Equipement.description= data.Equipement.description;
-        this.Equipement.caracteristiques= data.Equipement.caracteristiques;
-        this.Equipement.duree_de_vie= data.Equipement.duree_de_vie;
-        this.Equipement.carted= true;
-        this.cout= data.cout;
-        this.montant= data.montant;
-        this.reste= data.reste;
-        this.statut= data.statut;
+
+    update(data) {
+        this.Equipement.id = data.Equipement.id;
+        this.Equipement.nom_equipement = data.Equipement.nom_equipement;
+        this.Equipement.type = data.Equipement.type;
+        this.Equipement.valeur = data.Equipement.valeur;
+        this.Equipement.etat = data.Equipement.etat;
+        this.Equipement.description = data.Equipement.description;
+        this.Equipement.caracteristiques = data.Equipement.caracteristiques;
+        this.Equipement.duree_de_vie = data.Equipement.duree_de_vie;
+        this.Equipement.carted = true;
+        this.cout = data.cout;
+        this.montant = data.montant;
+        this.reste = data.reste;
+        this.statut = data.statut;
     }
 }
+
 export default {
 
     state: {
@@ -49,7 +51,7 @@ export default {
             description: 'aaaaaaa',
             caracteristiques: 'aaaabbb',
             duree_de_vie: 365,
-            carted:false
+            carted: false
         },
         Vente: {
             Equipements: [],
@@ -58,12 +60,12 @@ export default {
             reste: 0,
             statut: 'en cours'
         },
-        Panier:[],
+        Panier: [],
         Commande: {},
         Prestation: {},
-        FactureData:{},
+        FactureData: {},
         Facture: {
-            service_id:'',
+            service_id: '',
             Vente: {
                 Equipements: [{
                     equipement_id: 1,
@@ -114,27 +116,39 @@ export default {
         getPrestation(state) {
             return state.Prestation;
         },
-        getValeurAchats(state){
-            let somme=0;
+        getValeurAchats(state) {
+            let somme = 0;
             state.Vente.Equipements.forEach(function (element) {
-                somme=somme+parseInt(element.valeur);
+                somme = somme + parseInt(element.valeur);
             });
 
             return somme
         },
-        getVentesFacture(state){
+        getVentesFacture(state) {
             return state.Vente.Equipements
         },
-        getFactureData(state){
+        getFactureData(state) {
             return state.FactureData;
         }
     },
     actions: {
+        allWorkersFromDatabase(){
+            axios.get("/users")
+                .then((response) => {
+                    response.data.data.forEach(function (element) {
+                        element.carted = false;
+                    });
+                    context.commit("LOAD_EQUIPEMENT_LIST", response.data) //categories will be run from mutation
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
         allEquipementFromDatabase(context) {
             axios.get("/equipements")
                 .then((response) => {
-                    response.data.data.forEach(function(element){
-                        element.carted=false;
+                    response.data.data.forEach(function (element) {
+                        element.carted = false;
                     });
                     context.commit("LOAD_EQUIPEMENT_LIST", response.data) //categories will be run from mutation
                 })
@@ -170,11 +184,11 @@ export default {
                     console.log("Error........")
                 })
         },
-        allVentesFromFacture(context,data){
+        allVentesFromFacture(context, data) {
             console.log(data)
-            axios.get("/factures/details/"+ data.id,data)
+            axios.get("/factures/details/" + data.id, data)
                 .then((response) => {
-                    context.commit('UPDATE_VENTE',response.data);
+                    context.commit('UPDATE_VENTE', response.data);
                     // context.commit("LOAD_PRESTATION_LIST", response.data) //categories will be run from mutation
                     console.log(response);
                 })
@@ -182,11 +196,11 @@ export default {
                     console.log("Error........")
                 })
         },
-        allFactureData(context,data){
-            axios.get("/factures/data/"+ data,data)
+        allFactureData(context, data) {
+            axios.get("/factures/data/" + data, data)
                 .then((response) => {
-                    console.log('response',response.data)
-                    context.commit('UPDATE_FACTURE_DATA',response.data);
+                    console.log('response', response.data)
+                    context.commit('UPDATE_FACTURE_DATA', response.data);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -219,7 +233,7 @@ export default {
             axios.post('/factures', data).then((response) => {
                 console.log('facture request')
                 console.log(response)
-                context.dispatch('saveVenteData',response)
+                context.dispatch('saveVenteData', response)
             }, (error) => {
                 console.log(error)
             });
@@ -256,8 +270,8 @@ export default {
         },
         getEquipementResultsFromDataBase(context, data) {
             axios.get('/equipements?page=' + data).then((response) => {
-                response.data.data.forEach(function(element){
-                    element.carted=false
+                response.data.data.forEach(function (element) {
+                    element.carted = false
                 });
                 console.log(response.data);
                 context.commit("LOAD_EQUIPEMENT_LIST", response.data) //categories will be run from mutation
@@ -295,12 +309,12 @@ export default {
             return state.ListeEquipements.data.push(data);
         },
         REMOVE_FROM_EQUIPEMENT_LIST(state, data) {
-            state.ListeEquipements.data.filter(function(obj){
-                return obj.id==data.id;
+            state.ListeEquipements.data.filter(function (obj) {
+                return obj.id == data.id;
             });
         },
-        UPDATE_VENTE(state,data){
-            state.Vente.Equipements=data;
+        UPDATE_VENTE(state, data) {
+            state.Vente.Equipements = data;
         },
         LOAD_EQUIPEMENT_LIST(state, data) {
             return state.ListeEquipements = data;
@@ -315,19 +329,32 @@ export default {
             return state.ListePrestations = data;
         },
         CLEAR_CART(state) {
-            return state.Vente.Equipements =[];
+            return state.Vente.Equipements = [];
+        },
+        CLEAR_ITEM(state) {
+            return state.Equipement = {};
         },
         ADD_TO_CART(state, data) {
-            state.Vente.Equipements.push(data);
-            state.Vente.cout+=data.valeur;
+            let check=false;
+            for (var i = 0; i < state.Vente.Equipements.length; i++) {
+                if (state.Vente.Equipements[i].id == data.id) {
+                    check = true;
+                    break;
+                }
+            }
+            if (!check) {
+                state.Vente.Equipements.push(data);
+                state.Vente.cout += data.valeur;
+            }
+
             return state.Vente;
         },
-        UPDATE_FACTURE(state,data){
-            state.Facture.service_id=data.service_id;
-            state.Facture=data;
+        UPDATE_FACTURE(state, data) {
+            state.Facture.service_id = data.service_id;
+            state.Facture = data;
         },
-        UPDATE_FACTURE_DATA(state,data){
-            state.FactureData=data;
+        UPDATE_FACTURE_DATA(state, data) {
+            state.FactureData = data;
         },
         // ADD_TO_CART(state,data){
         //     let x=new Vente();
@@ -335,8 +362,10 @@ export default {
         //     state.Panier.push(x);
         //     // state.ListeEquipements.data.pop(x.Equipement);
         // },
-        REMOVE_FROM_CART(state,data){
-            return state.Vente.Equipements.pop(data);
+        REMOVE_FROM_CART(state, data) {
+            state.Vente.Equipements=state.Vente.Equipements.filter(function (obj) {
+                return obj.id != data.id;
+            });
         },
 
     }
