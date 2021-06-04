@@ -38,6 +38,28 @@ export default {
 
     state: {
         date: new Date(),
+        menu:'home',
+        ListePersonnel:[{}],
+        ListeRoles:[],
+        ListePermissions:[],
+        Personnel:{
+            photo:'',
+            email:'radius@radius.com',
+            nom:'Nguiamba',
+            password:'Obinsama',
+            prenom:'Christian',
+            date_naissance:'',
+            salarie:false,
+            salaire:'200000',
+            poste:'Manager',
+            cni:'65518521',
+            date_embauche:'',
+            duree_contrat:'200',
+            telephone:'693568612',
+            api_token:'$2y$10$hV8QWCz5TFzEgnaGdYHuzuKhJvHmszgC6hH/BpghbT1vi69/hjorC',
+            roles:''
+
+        },
         ListeEquipements: {},
         ListeVentes: {},
         ListeCommandes: {},
@@ -61,8 +83,8 @@ export default {
             statut: 'en cours'
         },
         Panier: [],
-        Commande: {},
-        Prestation: {},
+        // Commande: {},
+        // Prestation: {},
         FactureData: {},
         Facture: {
             service_id: '',
@@ -92,6 +114,9 @@ export default {
         }
     },
     getters: {
+        getMenu(state){
+            return state.menu;
+        },
         getCategoryFormGetters(state) { //take parameter state
             return state.category
         },
@@ -129,16 +154,54 @@ export default {
         },
         getFactureData(state) {
             return state.FactureData;
+        },
+        getAllWorkers(state){
+            return state.ListePersonnel;
+        },
+        getPersonnel(state){
+            return state.Personnel;
+        },
+        getTotalSalaires(state){
+            let somme = 0;
+            state.ListePersonnel.forEach(function (element) {
+                somme = somme + parseInt(element.salaire);
+            });
+
+            return somme
+        },
+        getRoles(state){
+            return state.ListeRoles;
+        },
+        getPermissions(state){
+            return state.ListePermissions;
         }
     },
     actions: {
-        allWorkersFromDatabase(){
+        allRolesFromDatabase(context){
+            axios.get("/roles")
+                .then((response) => {
+                    // console.log(response.data.data);
+                    context.commit("LOAD_ROLES_LIST", response.data.data) //categories will be run from mutation
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        allPermissionsFromDatabase(context){
+            axios.get("/roles/create")
+                .then((response) => {
+                    // console.log(response.data);
+                    context.commit("LOAD_PERMISSION_LIST", response.data) //categories will be run from mutation
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        allWorkersFromDatabase(context){
             axios.get("/users")
                 .then((response) => {
-                    response.data.data.forEach(function (element) {
-                        element.carted = false;
-                    });
-                    context.commit("LOAD_EQUIPEMENT_LIST", response.data) //categories will be run from mutation
+                    // console.log(response.data.data);
+                    context.commit("LOAD_WORKER_LIST", response.data.data) //categories will be run from mutation
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -213,6 +276,13 @@ export default {
                 console.log(error)
             });
         },
+        saveSingleWorker(context, data) {
+            axios.post('/users', data).then((response) => {
+                console.log('role',response);
+            }, (error) => {
+                console.log(error)
+            });
+        },
         saveCommandeData(context, data) {
             axios.post('/commande', data).then((response) => {
             }, (error) => {
@@ -249,6 +319,12 @@ export default {
         },
         updateEquipementData(context, data) {
             axios.put('/equipements/' + data.id, data).then((response) => {
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        updateSingleWorkerData(context, data) {
+            axios.put('/users/' + data.id, data).then((response) => {
             }, (error) => {
                 console.log(error)
             });
@@ -325,14 +401,46 @@ export default {
         LOAD_VENTE_LIST(state, data) {
             return state.ListeVentes = data;
         },
+        LOAD_WORKER_LIST(state, data) {
+            return state.ListePersonnel = data;
+        },
+        LOAD_PERMISSION_LIST(state, data) {
+            return state.ListePermissions = data;
+        },
         LOAD_PRESTATION_LIST(state, data) {
             return state.ListePrestations = data;
+        },
+        LOAD_ROLES_LIST(state, data) {
+            return state.ListeRoles = data;
         },
         CLEAR_CART(state) {
             return state.Vente.Equipements = [];
         },
         CLEAR_ITEM(state) {
             return state.Equipement = {};
+        },
+        CLEAR_PERSONNEL(state) {
+            return state.Personnel = {
+                photo:'',
+                email:'',
+                nom:'',
+                password:'',
+                prenom:'',
+                date_naissance:'',
+                salarie:false,
+                salaire:'',
+                poste:'',
+                cni:'',
+                date_embauche:'',
+                duree_contrat:'',
+                telephone:'',
+                api_token:'$2y$10$hV8QWCz5TFzEgnaGdYHuzuKhJvHmszgC6hH/BpghbT1vi69/hjorC',
+                roles:''
+            };
+        },
+        RELOAD_PERSONNEL(state,data) {
+            console.log('personnel',data);
+            return state.Personnel = data;
         },
         ADD_TO_CART(state, data) {
             let check=false;
@@ -355,6 +463,9 @@ export default {
         },
         UPDATE_FACTURE_DATA(state, data) {
             state.FactureData = data;
+        },
+        CHANGE_MENU(state, data) {
+            state.menu = data;
         },
         // ADD_TO_CART(state,data){
         //     let x=new Vente();

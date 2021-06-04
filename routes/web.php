@@ -1,7 +1,5 @@
 <?php
-use App\Events\MessageSent;
-use App\User;
-use App\Message;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +31,6 @@ Route::get('/', 'HomeController@index');
 //Route::get('/edit/{id}', 'HomeController@editUser')->name('editUser');
 //Route::post('/edit/user={id}', 'HomeController@editUserAcc')->name('edit');
 
-Route::group(['middleware' => ['auth']], function() {
 
 //    Route::resource('roles', 'RoleController');
 //    Route::resource('users', 'UserController', ['only' => [
@@ -44,15 +41,15 @@ Route::group(['middleware' => ['auth']], function() {
 //    Route::get('/messages', 'MessageController@index')->name('messages.index');
 //    Route::get('/messages/{message}/show', 'MessageController@show')->name('messages.show');
 //    Route::get('/messages/notifs', 'MessageController@notifs')->name('messages.get');
+
+Route::group(['middleware' => ['auth']], function() {
     Route::resource('equipements', 'EquipementsController');
     Route::resource('factures', 'FacturesController');
     Route::resource('ventes', 'VentesController');
     Route::resource('users', 'UsersController');
+    Route::resource('roles', 'RolesController');
     Route::get('factures/details/{id}', 'FacturesController@details');
     Route::get('factures/data/{id}', 'FacturesController@data');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 // TODO laugh at the project

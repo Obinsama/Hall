@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+       'photo','nom','prenom','email', 'password','date_embauche','duree_contrat','poste','cni','telephone','date_naissance','salarie','salaire','api_token'
     ];
 
     /**
@@ -34,4 +34,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    public function getAllPermissionsAttribute() {
+        $permissions = [];
+        foreach (Permission::all() as $permission) {
+            if (Auth::user()->can($permission->name)) {
+                $permissions[] = $permission->name;
+            }
+        }
+        return $permissions;
+    }
+
 }
