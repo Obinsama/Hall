@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +48,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('ventes', 'VentesController');
     Route::resource('users', 'UsersController');
     Route::resource('roles', 'RolesController');
+    Route::post('roles/permission', 'RolesController@savePermission');
+//    Route::get('users/connected', function (){
+//        $user=Auth::user();
+//        return response()->json($user);
+//    });
+    Route::get('users/connected', 'UsersController@connected')->name('users.connected');
+    Route::post('users/search', 'UsersController@search');
     Route::get('factures/details/{id}', 'FacturesController@details');
     Route::get('factures/data/{id}', 'FacturesController@data');
 });

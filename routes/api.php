@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:api')->get('/user','UsersController@connected');
+//     function (Request $request) {
+//         $user=$request->user();
+//         return $user;
+//     }
 ////Route::post("messages","ChatsController@sendMessage")->name("sendMessage");
 //Route::post("messages/content","ChatsController@getContent")->name("getContent");
 //Route::post("messages/state","ChatsController@getState")->name("getState");

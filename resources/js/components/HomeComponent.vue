@@ -27,77 +27,78 @@
         <div class="row">
             <div class="col-12 col-xl-12 stretch-card">
                 <div class="row flex-grow">
+<!--                    TODO Configurer le plot-->
                     <first-min-review></first-min-review>
-<!--                    <div class="col-md-4 grid-margin stretch-card">-->
-<!--                        <div class="card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between align-items-baseline">-->
-<!--                                    <h6 class="card-title mb-0">New Orders</h6>-->
-<!--                                    <div class="dropdown mb-2">-->
-<!--                                        <button class="btn p-0" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>-->
-<!--                                        </button>-->
-<!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-6 col-md-12 col-xl-5">-->
-<!--                                        <h3 class="mb-2">35,084</h3>-->
-<!--                                        <div class="d-flex align-items-baseline">-->
-<!--                                            <p class="text-danger">-->
-<!--                                                <span>-2.8%</span>-->
-<!--                                                <i data-feather="arrow-down" class="icon-sm mb-1"></i>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-6 col-md-12 col-xl-7">-->
-<!--                                        <div id="apexChart2" class="mt-md-3 mt-xl-0"></div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-4 grid-margin stretch-card">-->
-<!--                        <div class="card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="d-flex justify-content-between align-items-baseline">-->
-<!--                                    <h6 class="card-title mb-0">Growth</h6>-->
-<!--                                    <div class="dropdown mb-2">-->
-<!--                                        <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>-->
-<!--                                        </button>-->
-<!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>-->
-<!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-6 col-md-12 col-xl-5">-->
-<!--                                        <h3 class="mb-2">89.87%</h3>-->
-<!--                                        <div class="d-flex align-items-baseline">-->
-<!--                                            <p class="text-success">-->
-<!--                                                <span>+2.8%</span>-->
-<!--                                                <i data-feather="arrow-up" class="icon-sm mb-1"></i>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-6 col-md-12 col-xl-7">-->
-<!--                                        <div id="apexChart3" class="mt-md-3 mt-xl-0"></div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="col-md-4 grid-margin stretch-card">-->
+                    <!--                        <div class="card">-->
+                    <!--                            <div class="card-body">-->
+                    <!--                                <div class="d-flex justify-content-between align-items-baseline">-->
+                    <!--                                    <h6 class="card-title mb-0">New Orders</h6>-->
+                    <!--                                    <div class="dropdown mb-2">-->
+                    <!--                                        <button class="btn p-0" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--                                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>-->
+                    <!--                                        </button>-->
+                    <!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="row">-->
+                    <!--                                    <div class="col-6 col-md-12 col-xl-5">-->
+                    <!--                                        <h3 class="mb-2">35,084</h3>-->
+                    <!--                                        <div class="d-flex align-items-baseline">-->
+                    <!--                                            <p class="text-danger">-->
+                    <!--                                                <span>-2.8%</span>-->
+                    <!--                                                <i data-feather="arrow-down" class="icon-sm mb-1"></i>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="col-6 col-md-12 col-xl-7">-->
+                    <!--                                        <div id="apexChart2" class="mt-md-3 mt-xl-0"></div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-4 grid-margin stretch-card">-->
+                    <!--                        <div class="card">-->
+                    <!--                            <div class="card-body">-->
+                    <!--                                <div class="d-flex justify-content-between align-items-baseline">-->
+                    <!--                                    <h6 class="card-title mb-0">Growth</h6>-->
+                    <!--                                    <div class="dropdown mb-2">-->
+                    <!--                                        <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--                                            <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>-->
+                    <!--                                        </button>-->
+                    <!--                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="printer" class="icon-sm mr-2"></i> <span class="">Print</span></a>-->
+                    <!--                                            <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="download" class="icon-sm mr-2"></i> <span class="">Download</span></a>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="row">-->
+                    <!--                                    <div class="col-6 col-md-12 col-xl-5">-->
+                    <!--                                        <h3 class="mb-2">89.87%</h3>-->
+                    <!--                                        <div class="d-flex align-items-baseline">-->
+                    <!--                                            <p class="text-success">-->
+                    <!--                                                <span>+2.8%</span>-->
+                    <!--                                                <i data-feather="arrow-up" class="icon-sm mb-1"></i>-->
+                    <!--                                            </p>-->
+                    <!--                                        </div>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="col-6 col-md-12 col-xl-7">-->
+                    <!--                                        <div id="apexChart3" class="mt-md-3 mt-xl-0"></div>-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div> <!-- row -->
@@ -150,21 +151,24 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody>
-                                <tr>
-                                    <td>Effectif du Personnel :</td>
-                                    <td>35</td>
-                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <td>Effectif du Personnel :</td>-->
+                                <!--                                    <td>{{liste_personnel.length}}</td>-->
+                                <!--                                </tr>-->
                                 <tr>
                                     <td>Personnel Permanents :</td>
-                                    <td>30</td>
+                                    <td>{{liste_personnel.length}}</td>
+                                    <td>{{(masseSalariale).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                 </tr>
                                 <tr>
                                     <td>Personnel Temporaire :</td>
-                                    <td>5</td>
+                                    <td>0</td>
+                                    <td>{{(0).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Masse salariale :</strong></td>
-                                    <td>12 650 000 FCFA</td>
+                                    <td><strong>Effectif du Personnel :</strong></td>
+                                    <td>{{liste_personnel.length}}</td>
+                                    <td>{{(masseSalariale).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                 </tr>
 
                                 </tbody>
@@ -182,15 +186,18 @@
                                 <tbody>
                                 <tr>
                                     <td>Total des Ventes :</td>
-                                    <td>16</td>
+                                    <td class="col-md-2">{{liste_ventes.data.length}}</td>
+                                    <td>{{(revenu).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                 </tr>
                                 <tr>
                                     <td>Total des Prestations :</td>
-                                    <td>3</td>
+                                    <td class="col-md-2">0</td>
+                                    <td>0 FCFA</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Total Revenu :</strong></td>
-                                    <td>3 000 000 FCFA</td>
+                                    <td>{{(revenu).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
+                                    <td></td>
                                 </tr>
 
                                 </tbody>
@@ -206,14 +213,13 @@
             <div class="col-12 col-xl-12 grid-margin stretch-card">
                 <div class="card overflow-hidden">
                     <div class="card-body">
-                        <h6 class="card-title">Dernieres ventes</h6>
-
+                        <h6 class="card-title">5 Dernieres ventes</h6>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr v-for="vente in liste_ventes.data">
+                                <tr v-for="vente in liste_ventes.data.slice(0,5)">
                                     <td>{{vente.id}}</td>
                                     <td>
                                         <router-link class=" mx-2" href="#" title="Voir Facture" :to="'/impression/'+vente.id"  v-show="vente.statut=='termine'"> {{vente.ref}}</router-link>
@@ -242,16 +248,26 @@
         },
         mounted(){
             this.$store.dispatch('allVentesFromDatabase');
+            this.$store.dispatch('allWorkersFromDatabase');
         },
         methods:{
 
         },
         computed:{
             liste_ventes(){
-                return this.$store.getters.getVenteList;
+                return  this.$store.getters.getVenteList;
             },
-            Ventes(){
+            ventes(){
                 return this.$store.getters.getVente;
+            },
+            revenu(){
+                return this.$store.getters.getRevenu;
+            },
+            liste_personnel(){
+                return this.$store.getters.getAllWorkers;
+            },
+            masseSalariale(){
+                return this.$store.getters.getMasseSalariale;
             }
         },
     }

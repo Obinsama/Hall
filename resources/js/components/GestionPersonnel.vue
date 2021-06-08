@@ -12,11 +12,20 @@
                         <!--                        <p class="card-description">Add class <code>.table</code></p>-->
                         <p class="" style="float: right"><a class="btn btn-success pull-right" href="" data-target=".newModal" data-toggle="modal" @click="createWorker"> Nouvel Employe</a>
                         </p>
+                        <div class="col-lg-6">
+                            <div class="email-search">
+                                <div class="input-group input-search">
+                                    <input class="form-control" type="text" placeholder="Search user..." v-model="recherche" @keyup="rechercher"><span class="input-group-btn">
+                            <button class="btn btn-outline-secondary  custom-search" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table " style="text-align:center">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <!--                                    <th>#</th>-->
+                                    <th>Utilisateur</th>
                                     <th>Nom</th>
                                     <th>Poste</th>
                                     <th>Salaire</th>
@@ -25,7 +34,8 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="people in peoples">
-                                    <td>{{people.id}}</td>
+                                    <!--                                    <td>{{people.id}}</td>-->
+                                    <td><img :src="people.photo" alt="Photo" width="10px" style="border-radius:50%"></td>
                                     <td>{{people.nom}}</td>
                                     <td>{{people.poste}} </td>
                                     <td>{{(people.salaire).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </td>
@@ -160,9 +170,13 @@
     export default {
         name: "GestionPersonnel",
         data(){
+
             return{
                 profile_pic:'../assets/images/index.jpg',
-                update:false
+                update:false,
+                recherche:''
+
+
             }
         },
         methods:{
@@ -177,6 +191,18 @@
                     this.personnel.photo=this.profile_pic;
                 }.bind(this), false);
                 reader.readAsDataURL(selectedFiles[0]);
+            },
+            rechercher(){
+                if(this.recherche.length>=1){
+                    let data={
+                        content:this.recherche
+                    };
+                    this.$store.dispatch('searchWorkers',data);
+                }else if(this.recherche.length==0){
+                    this.$store.dispatch('allWorkersFromDatabase');
+                }
+
+
             },
             saveProfile(){
                 let personnel=this.$store.getters.getPersonnel;
@@ -212,7 +238,7 @@
         computed:{
 
             peoples(){
-                return this.$store.getters.getAllWorkers;
+                    return this.$store.getters.getAllWorkers;
             },
             Listeroles(){
                 return this.$store.getters.getRoles;

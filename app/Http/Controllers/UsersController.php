@@ -5,6 +5,7 @@ namespace Hall\Http\Controllers;
 use Illuminate\Http\Request;
 use Hall\Http\Controllers\Controller;
 use Hall\User;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,12 +18,20 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
 
     {
 
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return response()->json($data);
+        if(request('search')){
+            $data['data']=User::where('nom','%'.request('search').'%')->get();
+            $data='Bonjour';
+//            return response()->json(request('search'));
+        }else{
+            $data = User::orderBy('id','DESC')->paginate(5);
+            return response()->json($data);
+        }
+        return response()->json(request('search'));
+
 //        return view('users.index',compact('data'))
 //
 //            ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -39,7 +48,19 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
 
      */
+    public function search(Request $request){
+        $user=$request->content;
+        $user=User::select("*")->where('nom','LIKE','%'.$user.'%')->get();
 
+        return response()->json($user);
+
+    }
+
+    public function connected(){
+//        $user=Auth::user();
+        $user = auth()->user();
+        return response()->json($user);
+    }
     public function create()
 
     {
@@ -114,8 +135,8 @@ class UsersController extends Controller
     {
 
         $user = User::find($id);
-
-        return view('users.show',compact('user'));
+        return response()->json($user);
+//        return view('users.show',compact('user'));
 
     }
 
@@ -195,12 +216,10 @@ class UsersController extends Controller
         $user = User::find($id);
 
         $user->update($input);
-
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-
-        $user->assignRole($request->input('roles'));
-
+        if(($request->input('roles'))){
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $user->assignRole($request->input('roles'));
+        }
 
         return redirect()->route('users.index')
 

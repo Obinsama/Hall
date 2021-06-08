@@ -181,6 +181,8 @@
                 this.$store.commit("ADD_TO_CART", equipement);
             },
             vendreEquipements() {
+
+                //TODO Ajouter le nom du client
                 let vente = this.$store.getters.getVente;
                 this.$store.dispatch('saveFactureData', vente)
 

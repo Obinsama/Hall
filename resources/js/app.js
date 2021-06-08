@@ -66,9 +66,9 @@ const routes = [{
     path: '/prestations',
     component: GestionPrestations
 }, {
-        path: '/impression/:id',
-        component: Impression
-    },
+    path: '/impression/:id',
+    component: Impression
+},
     {
         path:'/personnel',
         component:GestionPersonnel
@@ -76,6 +76,10 @@ const routes = [{
     {
         path:'/roles',
         component:GestionRoles
+    },{
+        path: '/logout',
+        redirect: '/'
+
     }
 ];
 

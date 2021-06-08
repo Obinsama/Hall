@@ -38,7 +38,6 @@ export default {
 
     state: {
         date: new Date(),
-        menu:'home',
         ListePersonnel:[{}],
         ListeRoles:[],
         ListePermissions:[],
@@ -60,7 +59,31 @@ export default {
             roles:''
 
         },
+        user:{
+            photo:'',
+            email:'',
+            nom:'',
+            password:'',
+            prenom:'',
+            date_naissance:'',
+            salarie:'',
+            salaire:'',
+            poste:'',
+            cni:'',
+            date_embauche:'',
+            duree_contrat:'',
+            telephone:'',
+            api_token:'',
+            roles:''
+        },
         ListeEquipements: {},
+        role:{
+            name:'',
+            permissions:[]
+        },
+        permission:{
+            name:''
+        },
         ListeVentes: {},
         ListeCommandes: {},
         ListePrestations: {},
@@ -114,9 +137,6 @@ export default {
         }
     },
     getters: {
-        getMenu(state){
-            return state.menu;
-        },
         getCategoryFormGetters(state) { //take parameter state
             return state.category
         },
@@ -172,10 +192,34 @@ export default {
         getRoles(state){
             return state.ListeRoles;
         },
+        getRole(state){
+            return state.role;
+        },
         getPermissions(state){
             return state.ListePermissions;
+        },
+        getPermission(state){
+            return state.permission
+        },
+        getUser(state){
+            return state.user;
+        },
+        getRevenu(state){
+            let montant=0;
+            state.ListeVentes.data.forEach(function (element) {
+                montant = montant + parseInt(element.montant);
+            });
+            return montant
+        },
+        getMasseSalariale(state){
+            let total_salaires=0;
+            state.ListePersonnel.forEach(function (element) {
+                total_salaires = total_salaires + parseInt(element.salaire);
+            });
+            return total_salaires
         }
     },
+
     actions: {
         allRolesFromDatabase(context){
             axios.get("/roles")
@@ -200,7 +244,7 @@ export default {
         allWorkersFromDatabase(context){
             axios.get("/users")
                 .then((response) => {
-                    // console.log(response.data.data);
+                     console.log(response);
                     context.commit("LOAD_WORKER_LIST", response.data.data) //categories will be run from mutation
                 })
                 .catch(() => {
@@ -230,6 +274,16 @@ export default {
         },
         allVentesFromDatabase(context) {
             axios.get("/ventes")
+                .then((response) => {
+                    context.commit("LOAD_VENTE_LIST", response.data) //categories will be run from mutation
+                    // console.log(response);
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        tenVentesFromDatabase(context) {
+            axios.get("/ventes/ten")
                 .then((response) => {
                     context.commit("LOAD_VENTE_LIST", response.data) //categories will be run from mutation
                     // console.log(response);
@@ -269,6 +323,34 @@ export default {
                     console.log("Error........")
                 })
         },
+        logout(){
+            axios.post("/logout")
+                .then((response) => {
+                    // console.log('response', response)
+                    windows.location.href('/home')
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        getConnectedUser(context){
+            // axios.get("/users/connected")
+            //     .then((response) => {
+            //         console.log('response', response)
+            //         context.commit('UPDATE_USER', response);
+            //     })
+            //     .catch(() => {
+            //         console.log("Error........")
+            //     })
+
+            axios.get('api/user',{
+                headers: {
+                    'Authorization': `Basic $2y$10$hV8QWCz5TFzEgnaGdYHuzuKhJvHmszgC6hH/BpghbT1vi69/hjorC`
+                }
+            }).then(response => {
+                console.log(response.body);
+            })
+        },
         saveEquipementData(context, data) {
             axios.post('/equipements', data).then((response) => {
                 // console.log(response);
@@ -278,6 +360,20 @@ export default {
         },
         saveSingleWorker(context, data) {
             axios.post('/users', data).then((response) => {
+                console.log('role',response);
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        saveRole(context, data) {
+            axios.post('/roles', data).then((response) => {
+                console.log('role',response);
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        savePermission(context, data) {
+            axios.post('/roles/permission', data).then((response) => {
                 console.log('role',response);
             }, (error) => {
                 console.log(error)
@@ -363,6 +459,23 @@ export default {
                 console.log(error)
             });
         },
+        searchWorkers(context,data){
+            console.log('search',data);
+            axios.post('/users/search',data).then((response) => {
+                context.commit("LOAD_WORKER_LIST", response.data) //categories will be run from mutation
+
+                console.log(response)
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        test(){
+            const options = {
+                headers: {'X-Custom-Header': 'value'}
+            };
+
+            axios.post('/save', { a: 10 }, options);
+        }
     },
 
     mutations: {
@@ -438,6 +551,28 @@ export default {
                 roles:''
             };
         },
+        UPDATE_USER(state,data){
+            state.user=data;
+        },
+        CLEAR_USER(state){
+            state.user={
+                photo:'',
+                email:'',
+                nom:'',
+                password:'',
+                prenom:'',
+                date_naissance:'',
+                salarie:false,
+                salaire:'',
+                poste:'',
+                cni:'',
+                date_embauche:'',
+                duree_contrat:'',
+                telephone:'',
+                api_token:'',
+                roles:''
+            };
+        },
         RELOAD_PERSONNEL(state,data) {
             console.log('personnel',data);
             return state.Personnel = data;
@@ -464,9 +599,6 @@ export default {
         UPDATE_FACTURE_DATA(state, data) {
             state.FactureData = data;
         },
-        CHANGE_MENU(state, data) {
-            state.menu = data;
-        },
         // ADD_TO_CART(state,data){
         //     let x=new Vente();
         //     x.update(data);
@@ -477,6 +609,7 @@ export default {
             state.Vente.Equipements=state.Vente.Equipements.filter(function (obj) {
                 return obj.id != data.id;
             });
+            state.Vente.cout-=data.valeur
         },
 
     }

@@ -17,6 +17,7 @@
                                 <p class="mt-1 mb-1"><b>NobleUI Themes</b></p>
                                 <p>108,<br> Great Russell St,<br>London, WC1B 3NA.</p>
                                 <h5 class="mt-5 mb-2 text-muted">Client  :</h5>
+<!--                                TODO Ajouter dynamiquement le nom du client-->
                                 <p>Joseph&nbsp;E&nbsp;Carr,<br> 102, 102  Crown Street,<br> London, W3 3PR.</p>
                             </div>
                             <div class="col-lg-4 pr-0">

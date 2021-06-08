@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h6 class="card-title">Liste des Roles</h6>
+                        <!--                        TODO Fonction Ajout d'un role -->
                         <p class="" style="float: right"><a class="btn btn-success pull-right" href="" data-target=".roleModal" data-toggle="modal"> Nouveau Role</a>
                         </p>
                         <!--                      <p class="card-description">Add class <code>.table</code></p>-->
@@ -27,9 +28,11 @@
                                     <td>{{role.id}}</td>
                                     <td>{{role.name}}</td>
                                     <td>{{role.guard_name}}</td>
-                                    <td><a class="mr-2" href="" title="Show" style="" > <span><feather-icon type="eye" stroke="blue"></feather-icon></span></a>
-                                    <a class="mx-2"  href="" style="" title="edit" ><span><feather-icon type="edit" stroke="green"></feather-icon></span></a>
-                                    <a class="mx-2" href="" title="delete" style="color: red" data-method="DELETE"><span><feather-icon type="trash-2" stroke="red"></feather-icon></span></a></td>
+                                    <td>
+                                        <a class="mr-2" href="#" title="Show" style="" > <span><feather-icon type="eye" stroke="blue"></feather-icon></span></a>
+                                        <a class="mx-2"  href="#" style="" title="edit" data-toggle="modal" data-target=".roleModal"><span><feather-icon type="edit" stroke="green"></feather-icon></span></a>
+                                        <a class="mx-2" href="#" title="delete" style="color: red" data-method="DELETE"><span><feather-icon type="trash-2" stroke="red"></feather-icon></span></a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -51,10 +54,22 @@
                     <div class="modal-body">
                         <form>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">Name
-                                            <input type="text" class="form-control" name="name" placeholder="Enter role name" value=""></label>
+                                        <label class="control-label col-md-11">Permission Name<input class="form-control" type="text" name="permission" placeholder="Nom de la permission" v-model="permission.name"></label>
+
+                                        <a class="mt-4" href="" style="display:inline-block" @click.prevent="savePermission" title="Ajouter Permission"><span class=""><feather-icon type="plus-circle" stroke="green"></feather-icon></span></a>
+                                        <!--                                        <button class="btn btn-success mt-2" @click.prevent="addPermission">+</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <form id="addrole">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12">Name
+                                            <input  type="text" class="form-control " name="name" placeholder="Enter role name"  v-model="role.name"></label>
                                     </div>
                                 </div><!-- Col -->
 
@@ -64,7 +79,7 @@
                                     <strong>Permission:</strong>
                                     <br/>
                                     <div v-for="permission in permissions">
-                                        <label ><input type="checkbox" class="name" value="permission.id" > <strong>{{permission.name}}</strong></label>
+                                        <label ><input type="checkbox" class="name" :value="permission.name"  name="permission[]"> <strong>{{permission.name}}</strong></label>
                                     </div>
                                     <br/>
                                 </div>
@@ -96,7 +111,16 @@
         },
         methods:{
             saveRole(){
-                console.log('RoleSAVED')
+                var formData= new FormData(document.getElementById('addrole'))
+                // let role=this.$store.getters.getRole;
+                console.log('emit',formData);
+                this.$store.dispatch('saveRole',formData);
+                this.$store.dispatch('allRolesFromDatabase');
+            },
+            savePermission(){
+                let permission=this.$store.getters.getPermission;
+                this.$store.dispatch('savePermission',permission);
+                this.$store.dispatch('allPermissionsFromDatabase');
             }
         },
         computed:{
@@ -105,6 +129,12 @@
             },
             permissions(){
                 return this.$store.getters.getPermissions
+            },
+            role(){
+                return this.$store.getters.getRole;
+            },
+            permission(){
+                return this.$store.getters.getPermission;
             }
         }
     }

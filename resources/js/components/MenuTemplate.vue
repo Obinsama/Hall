@@ -1,21 +1,22 @@
 <template>
-<!--    TODO eviter de deranger les gens-->
+
     <div class="sidebar-body ps ps--active-y">
         <ul class="nav">
+<!--            TODO Gerer les autorisations par utilisateurs et roles-->
             <li class="nav-item nav-category">Administration</li>
-            <li class="nav-item " :class="{active: menu==='home'}" @click.prevent="changeMenu('home')">
+            <li class="nav-item " :class="{active: menu==='/'}" >
                 <router-link to="/" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Tableau de bord</span>
                 </router-link>
             </li>
-            <li class="nav-item " :class="{active: menu==='personnel'}" @click.prevent="changeMenu('personnel')">
+            <li class="nav-item " :class="{active: menu==='/personnel'}" >
                 <router-link to="/personnel" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">Gestion du Personnel</span>
                 </router-link>
             </li>
-            <li class="nav-item " :class="{active: menu==='roles'}" @click.prevent="changeMenu('roles')">
+            <li class="nav-item " :class="{active: menu==='/roles'}" >
                 <router-link to="/roles" class="nav-link">
                     <i class="link-icon" data-feather="award"></i>
                     <span class="link-title">Gestion des roles</span>
@@ -23,32 +24,30 @@
             </li>
 
             <li class="nav-item nav-category">Services</li>
-            <li class="nav-item " :class="{active: menu==='vente'}" @click.prevent="changeMenu('vente')">
+            <li class="nav-item " :class="{active: menu==='/ventes'}" >
                 <router-link to="/ventes" class="nav-link">
                     <i class="link-icon" data-feather="shopping-cart"></i>
                     <span class="link-title">Gestion Ventes</span>
                 </router-link>
             </li>
-            <li class="nav-item "  :class="{active: menu==='equipement'}" @click.prevent="changeMenu('equipement')">
+            <li class="nav-item "  :class="{active: menu==='/equipements'}" >
                 <router-link to="/equipements" class="nav-link">
                     <i class="link-icon" data-feather="truck"></i>
                     <span class="link-title">Gestion Equipements</span>
                 </router-link>
             </li>
-            <li class="nav-item " :class="{active: menu==='prestation'}" @click.prevent="changeMenu('prestation')">
+            <li class="nav-item " :class="{active: menu==='/prestations'}" >
                 <router-link to="/prestations" class="nav-link">
                     <i class="link-icon" data-feather="package"></i>
                     <span class="link-title">Gestion Prestations</span>
                 </router-link>
             </li>
-            <li class="nav-item " :class="{active: menu==='commande'}" @click.prevent="changeMenu('commande')">
+            <li class="nav-item " :class="{active: menu==='/commandes'}">
                 <router-link to="/commandes" class="nav-link">
                     <i class="link-icon" data-feather="clipboard"></i>
                     <span class="link-title">Gestion Commandes</span>
                 </router-link>
             </li>
-
-
         </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 592px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 500px;"></div></div></div>
 </template>
@@ -71,7 +70,7 @@
         },
         computed:{
             menu(){
-                return this.$store.getters.getMenu;
+                return this.$route.path;
             }
         }
     }

@@ -49,7 +49,7 @@
                         <div class="dropdown-body">
                             <a href="javascript:;" class="dropdown-item">
                                 <div class="figure">
-                                    <img src="assets/images/faces/face2.jpg" alt="userr">
+                                    <img :src="user.photo" alt="user">
                                 </div>
                                 <div class="content">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -179,16 +179,16 @@
                 </li>
                 <li class="nav-item dropdown nav-profile">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/images/faces/face1.jpg" alt="profile">
+                        <img :src="user.photo" alt="profile">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <div class="dropdown-header d-flex flex-column align-items-center">
                             <div class="figure mb-3">
-                                <img src="assets/images/faces/face1.jpg" alt="">
+                                <img :src="user.photo" alt="">
                             </div>
                             <div class="info text-center">
-                                <p class="name font-weight-bold mb-0">Amiah Burton</p>
-                                <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                                <p class="name font-weight-bold mb-0">{{user.nom}}</p>
+                                <p class="email text-muted mb-3">{{user.email}}</p>
                             </div>
                         </div>
                         <div class="dropdown-body">
@@ -212,9 +212,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="javascript:;" class="nav-link">
+                                    <!--                                    <a href="{{route('logout')}}" class="nav-link"  onclick="event.preventDefault();-->
+                                    <!--                                    document.getElementById('logout-form').submit();"></a>-->
+                                    <a href="/logout" class="nav-link" @click.prevent="logout">
                                         <i data-feather="log-out"></i>
                                         <span>Log Out</span>
+
                                     </a>
                                 </li>
                             </ul>
@@ -228,7 +231,34 @@
 
 <script>
     export default {
-        name: "NavBarUp"
+        name: "NavBarUp",
+        data(){
+            return{
+                info: document.querySelector("meta[name='user']").getAttribute('content')
+            }
+        },
+        created() {
+            // this.$store.dispatch("getConnectedUser");
+        },
+        methods:{
+            logout2(){
+                this.$store.dispatch('logout');
+                // windows.location.href('/home')
+            },
+            logout() {
+                axios.post('/logout').then(response => {
+                    this.$router.push("/login")
+
+                }).catch(error => {
+                    location.reload();
+                });
+            }
+        },
+        computed:{
+            user(){
+                return JSON.parse(this.info)
+            }
+        }
     }
 </script>
 

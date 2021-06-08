@@ -25,6 +25,7 @@ class VentesController extends Controller
             ->select('factures.id','factures.ref','factures.montant as montant','factures.reste as reste','factures.statut','date_facturation as date')
             ->join('services','factures.id','=','services.facture_id')
             ->join('ventes','services.id','=','ventes.service_id')
+//            ->where('factures.statut','=','termine')
 //            ->join('equipements','equipements.id','=','ventes.equipement_id')
             ->orderBy('factures.id','desc')
             ->groupBy('factures.id')

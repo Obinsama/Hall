@@ -4,7 +4,7 @@
             <a href="#" class="sidebar-brand">
                 Noble<span>UI</span>
             </a>
-            <div class="sidebar-toggler not-active">
+            <div class="sidebar-toggler active">
                 <span></span>
                 <span></span>
                 <span></span>

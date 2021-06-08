@@ -7,7 +7,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Hall</title>
-
+    @if (Auth::check())
+        <meta name="user" content="{{ Auth::user() }}">
+    @endif
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
