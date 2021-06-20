@@ -13,12 +13,14 @@
                     <div class="card-body">
                         <div class="container-fluid d-flex justify-content-between">
                             <div class="col-lg-3 pl-0">
-                                <a href="#" class="noble-ui-logo d-block mt-3">Noble<span>UI</span></a>
-                                <p class="mt-1 mb-1"><b>NobleUI Themes</b></p>
-                                <p>108,<br> Great Russell St,<br>London, WC1B 3NA.</p>
-                                <h5 class="mt-5 mb-2 text-muted">Client  :</h5>
-<!--                                TODO Ajouter dynamiquement le nom du client-->
-                                <p>Joseph&nbsp;E&nbsp;Carr,<br> 102, 102  Crown Street,<br> London, W3 3PR.</p>
+                                <a href="#" class="noble-ui-logo d-block mt-3">Mairie de <span>Lolodorf</span></a>
+<!--                                <p class="mt-1 mb-1"><b>NobleUI Themes</b></p>-->
+<!--                                <p>108,<br> Great Russell St,<br>London, WC1B 3NA.</p>-->
+                                <img class="ml-5" :src="arm" width="100px">
+                                                                <h5 class="mt-5 mb-2 text-muted">Client  :</h5>
+<!--                                                              TODO Ajouter dynamiquement le nom du client -->
+                                                                <p>Nguiamba&nbsp;E&nbsp;Carr,<br> Lolodorf.</p>
+
                             </div>
                             <div class="col-lg-4 pr-0">
                                 <h4 class="font-weight-medium text-uppercase text-right mt-4 mb-2">Facture</h4>
@@ -72,6 +74,11 @@
 <script>
     export default {
         name: "Impression",
+        data(){
+            return{
+                arm:'../assets/images/arm.png',
+            }
+        },
         created(){
             this.$store.dispatch('allFactureData',this.$route.params.id);
         },

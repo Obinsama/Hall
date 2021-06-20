@@ -219,7 +219,8 @@
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr v-for="vente in liste_ventes.data.slice(0,5)">
+                                <div v-if="liste_ventes.data">
+                                <tr  v-for="vente in liste_ventes.data.slice(0,5)">
                                     <td>{{vente.id}}</td>
                                     <td>
                                         <router-link class=" mx-2" href="#" title="Voir Facture" :to="'/impression/'+vente.id"  v-show="vente.statut=='termine'"> {{vente.ref}}</router-link>
@@ -227,6 +228,7 @@
                                     <td>{{(vente.montant).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                     <td>{{vente.date}}</td>
                                 </tr>
+                                </div>
                                 </tbody>
                             </table>
                         </div>
