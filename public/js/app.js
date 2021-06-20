@@ -93449,7 +93449,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -93460,6 +93460,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -93585,7 +93591,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("span", { staticClass: "link-title" }, [
-                _vm._v("Gestion du Personnel")
+                _vm._v("Gestion du personnel")
               ])
             ]
           )
@@ -93615,6 +93621,28 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "nav-item ", class: { active: _vm.menu === "/budget" } },
+        [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: "/budget" } },
+            [
+              _c("i", {
+                staticClass: "link-icon",
+                attrs: { "data-feather": "dollar-sign" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "link-title" }, [
+                _vm._v("Gestion du budget")
+              ])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("li", { staticClass: "nav-item nav-category" }, [_vm._v("Services")]),
       _vm._v(" "),
       _c(
@@ -93631,7 +93659,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("span", { staticClass: "link-title" }, [
-                _vm._v("Gestion Ventes")
+                _vm._v("Gestion Encheres")
               ])
             ]
           )
@@ -94560,7 +94588,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "navbar-content" }, [
       _c("img", {
-        staticStyle: { "padding-top": "10px", "margin-left": "30rem" },
+        staticStyle: { "padding-top": "10px", "margin-left": "0%" },
         attrs: { src: _vm.arm, alt: "", width: "45px", height: "85%" }
       }),
       _vm._v(" "),

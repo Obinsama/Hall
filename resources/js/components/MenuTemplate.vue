@@ -13,7 +13,7 @@
             <li class="nav-item " :class="{active: menu==='/personnel'}" >
                 <router-link to="/personnel" class="nav-link">
                     <i class="link-icon" data-feather="users"></i>
-                    <span class="link-title">Gestion du Personnel</span>
+                    <span class="link-title">Gestion du personnel</span>
                 </router-link>
             </li>
             <li class="nav-item " :class="{active: menu==='/roles'}" >
@@ -22,12 +22,18 @@
                     <span class="link-title">Gestion des roles</span>
                 </router-link>
             </li>
+            <li class="nav-item " :class="{active: menu==='/budget'}" >
+                <router-link to="/budget" class="nav-link">
+                    <i class="link-icon" data-feather="dollar-sign"></i>
+                    <span class="link-title">Gestion du budget</span>
+                </router-link>
+            </li>
 
             <li class="nav-item nav-category">Services</li>
             <li class="nav-item " :class="{active: menu==='/ventes'}" >
                 <router-link to="/ventes" class="nav-link">
                     <i class="link-icon" data-feather="shopping-cart"></i>
-                    <span class="link-title">Gestion Ventes</span>
+                    <span class="link-title">Gestion Encheres</span>
                 </router-link>
             </li>
             <li class="nav-item "  :class="{active: menu==='/equipements'}" >
