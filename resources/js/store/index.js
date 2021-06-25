@@ -276,7 +276,7 @@ export default {
             axios.get("/ventes")
                 .then((response) => {
                     context.commit("LOAD_VENTE_LIST", response.data) //categories will be run from mutation
-                    console.log(response);
+                    // console.log(response);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -420,7 +420,7 @@ export default {
             });
         },
         updateSingleWorkerData(context, data) {
-            axios.put('/users/'+data.id, data).then((response) => {
+            axios.put('/users/' + data.id, data).then((response) => {
             }, (error) => {
                 console.log(error)
             });

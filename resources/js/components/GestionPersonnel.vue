@@ -78,7 +78,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="personnel">
+                        <form>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mx-auto " style="display:flex">
@@ -113,7 +113,7 @@
 
                                     <div class="form-group">
                                         <label class="control-label ">Salarie
-                                            <input type="checkbox" class="form-control" name="salarie"  value="true" v-model="personnel.salarie" ></label>
+                                            <input type="checkbox" class="form-control" name="salarie"   v-model="personnel.salarie" ></label>
                                     </div>
                                     <div class="form-group" v-show="personnel.salarie==true">
                                         <label class="control-label col-md-12">Salaire
@@ -205,16 +205,13 @@
 
             },
             saveProfile(){
-                var formData= new FormData(document.getElementById('personnel'));
                 let personnel=this.$store.getters.getPersonnel;
                 this.$store.dispatch('saveSingleWorker',personnel);
                 this.$store.commit('CLEAR_PERSONNEL');
                 this.$store.dispatch('allWorkersFromDatabase');
             },
             updateProfile(){
-                var formData= new FormData(document.getElementById('personnel'));
                 let personnel=this.$store.getters.getPersonnel;
-                var data={formData,personnel}
                 this.$store.dispatch('updateSingleWorkerData',personnel);
                 this.$store.commit('CLEAR_PERSONNEL');
                 this.$store.dispatch('allWorkersFromDatabase');

@@ -4,7 +4,7 @@
 <!-- Mirrored from www.nobleui.com/laravel/template/light/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Apr 2020 00:09:00 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Mairie de Lolodorf</title>
+    <title>NobleUI Laravel Admin Dashboard Template</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
