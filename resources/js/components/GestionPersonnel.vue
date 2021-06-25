@@ -207,7 +207,7 @@
             saveProfile(){
                 var formData= new FormData(document.getElementById('personnel'));
                 let personnel=this.$store.getters.getPersonnel;
-                this.$store.dispatch('saveSingleWorker',formData);
+                this.$store.dispatch('saveSingleWorker',personnel);
                 this.$store.commit('CLEAR_PERSONNEL');
                 this.$store.dispatch('allWorkersFromDatabase');
             },
