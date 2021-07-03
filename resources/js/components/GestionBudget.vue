@@ -57,7 +57,7 @@
                     </div>
                     <div class="tab-pane fade" id="recettes" role="tabpanel" aria-labelledby="profile-line-tab">
                         <br>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#budgetModal"> Nouvelle recette</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#recetteModal"> Nouvelle recette</button>
                         <br>
                         <br><br>
                         <h6>Historique</h6>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="tab-pane fade" id="depenses" role="tabpanel" aria-labelledby="contact-line-tab">
                         <br>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#budgetModal"> Nouvelle dépense</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#depenseModal"> Nouvelle dépense</button>
                         <br>
                         <br><br>
                         <h6>Historique</h6>
@@ -159,6 +159,80 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal"
                                 @click.prevent="saveBudget">Enregistrer</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade newModal" id="recetteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="recette">Nouvelle Recette</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12">Origine
+                                            <input type="text" class="form-control" name="libelle" placeholder="label"  ></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12">Montant
+                                            <input type="number" class="form-control" name="montant" placeholder="Entrer le montant" ></label>
+                                    </div>
+                                </div><!-- Col -->
+                            </div><!-- Row -->
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                @click.prevent="saveRecette">Enregistrer</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade newModal" id="depenseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="depense">Nouvelle Dépense</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12">Motif
+                                            <input type="text" class="form-control" name="libelle" placeholder="label"  ></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12">Montant
+                                            <input type="number" class="form-control" name="montant" placeholder="Entrer le montant" ></label>
+                                    </div>
+                                </div><!-- Col -->
+                            </div><!-- Row -->
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                @click.prevent="saveRecette">Enregistrer</button>
 
                     </div>
                 </div>
