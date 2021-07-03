@@ -5,7 +5,6 @@
  */
 
 
-
 require('./bootstrap');
 // require('../../public/assets/plugins/feather-icons/feather.min');
 // require('../../public/assets/js/dashboard.js');
@@ -38,6 +37,8 @@ import GestionPrestations from "./components/GestionPrestations";
 import GestionPersonnel from "./components/GestionPersonnel";
 import Impression from "./components/Impression";
 import GestionRoles from "./components/GestionRoles";
+import GestionBudget from "./components/GestionBudget";
+
 
 const store = new Vuex.Store(
     storeData
@@ -77,10 +78,16 @@ const routes = [{
         path:'/roles',
         component:GestionRoles
     },{
+        path: '/budget',
+        component: GestionBudget
+
+    },
+    {
         path: '/logout',
         redirect: '/'
 
     }
+
 ];
 
 const router = new VueRouter({

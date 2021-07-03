@@ -82,7 +82,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mx-auto " style="display:flex">
-                                        <label class="control-label mx-auto" style="text-align:center" >  <img id="image" class="image center" width="100px"  style="border-radius:25%" :src="profile_pic" alt="apercu">
+                                        <label class="control-label mx-auto" style="text-align:center" >  <img id="image" class="image center" width="100px" height="100px"  style="border-radius:50%" :src="profile_pic" alt="apercu">
                                             <br> Apercu</label>
                                     </div>
                                     <div class="form-group">
