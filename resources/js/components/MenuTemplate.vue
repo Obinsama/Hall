@@ -16,6 +16,7 @@
                     <span class="link-title">Gestion du personnel</span>
                 </router-link>
             </li>
+
             <li class="nav-item " :class="{active: menu==='/roles'}" >
                 <router-link to="/roles" class="nav-link">
                     <i class="link-icon" data-feather="award"></i>
@@ -26,6 +27,12 @@
                 <router-link to="/budget" class="nav-link">
                     <i class="link-icon" data-feather="dollar-sign"></i>
                     <span class="link-title">Gestion du budget</span>
+                </router-link>
+            </li>
+            <li class="nav-item " :class="{active: menu==='/messages'}" >
+                <router-link to="/messages" class="nav-link">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Messages</span>
                 </router-link>
             </li>
 

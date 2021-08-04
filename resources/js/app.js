@@ -38,6 +38,8 @@ import GestionPersonnel from "./components/GestionPersonnel";
 import Impression from "./components/Impression";
 import GestionRoles from "./components/GestionRoles";
 import GestionBudget from "./components/GestionBudget";
+import Messages from "./components/Messages";
+import MessageReader from "./components/MessageReader";
 
 
 const store = new Vuex.Store(
@@ -69,6 +71,12 @@ const routes = [{
 }, {
     path: '/impression/:id',
     component: Impression
+},{
+    path:'/messages',
+    component:Messages
+},{
+    path:'/message/:id',
+    component:MessageReader
 },
     {
         path:'/personnel',

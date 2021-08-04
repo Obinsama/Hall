@@ -13,7 +13,7 @@ class CreateRecetteTable extends Migration
      */
     public function up()
     {
-        Schema::create('recette', function (Blueprint $table) {
+        Schema::create('recettes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('libelle');
             $table->integer('montant');
@@ -28,6 +28,6 @@ class CreateRecetteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recette');
+        Schema::dropIfExists('recettes');
     }
 }

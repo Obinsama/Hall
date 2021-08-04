@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "jquery-ui": "^1.12.1",
+        "laravel-echo": "^1.11.1",
+        "feather-icons": "^4.28.0",
         "laravel-vue-pagination": "^2.3.1",
         "socket-io-server": "^1.0.5",
         "socket.io-client": "^2.3.0",

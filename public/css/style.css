@@ -23,3 +23,6 @@ form a{
     border-radius: 0;
 padding: 4.5px 10px;
 }
+.sidebar .sidebar-header{
+    padding: 0px 25px !important;
+}

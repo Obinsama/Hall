@@ -13,7 +13,7 @@ class CreateDepenseTable extends Migration
      */
     public function up()
     {
-        Schema::create('depense', function (Blueprint $table) {
+        Schema::create('depenses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('libelle');
             $table->integer('montant');
@@ -28,6 +28,6 @@ class CreateDepenseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('depense');
+        Schema::dropIfExists('depenses');
     }
 }

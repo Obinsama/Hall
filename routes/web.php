@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('ventes', 'VentesController');
     Route::resource('users', 'UsersController');
     Route::resource('roles', 'RolesController');
+    Route::resource('budget', 'BudgetsController');
+    Route::resource('depense', 'DepensesController');
+    Route::resource('message', 'MessagesController');
     Route::post('roles/permission', 'RolesController@savePermission');
 //    Route::get('users/connected', function (){
 //        $user=Auth::user();

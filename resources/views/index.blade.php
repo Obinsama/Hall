@@ -4,7 +4,7 @@
 <!-- Mirrored from www.nobleui.com/laravel/template/light/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Apr 2020 00:09:00 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>NobleUI Laravel Admin Dashboard Template</title>
+  <title>City Hall</title>
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,7 +46,7 @@
     <nav class="sidebar">
   <div class="sidebar-header">
     <a href="#" class="sidebar-brand">
-      Noble<span>UI</span>
+      e<span>City</span>
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>
@@ -1037,7 +1037,7 @@
 </div> <!-- row -->
       </div>
       <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
-  <p class="text-muted text-center text-md-left">Copyright © 2019 <a href="https://www.nobleui.com/" target="_blank">NobleUI</a>. All rights reserved</p>
+  <p class="text-muted text-center text-md-left">Copyright © 2021 <a href="https://www.naug.com/" target="_blank">Naug</a>. All rights reserved</p>
   <p class="text-muted text-center text-md-left mb-0 d-none d-md-block">Handcrafted With <i class="mb-1 text-primary ml-1 icon-small" data-feather="heart"></i></p>
 </footer>    </div>
   </div>

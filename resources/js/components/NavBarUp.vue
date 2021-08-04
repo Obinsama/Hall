@@ -4,7 +4,7 @@
             <i data-feather="menu"></i>
         </a>
         <div class="navbar-content">
-            <img style="padding-top:10px;margin-left:0%" :src="arm" alt="" width="45px" height="85%">
+<!--            <img style="padding-top:10px;margin-left:0%" :src="arm" alt="" width="85px" >-->
 <!--            <form class="search-form">-->
 <!--                <div class="input-group">-->
 <!--                    <div class="input-group-prepend">-->
@@ -235,7 +235,7 @@
         name: "NavBarUp",
         data(){
             return{
-                arm:'../assets/images/arm.png',
+                arm:'../assets/images/logo.jpg',
                 info: document.querySelector("meta[name='user']").getAttribute('content')
             }
         },

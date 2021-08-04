@@ -251,7 +251,7 @@
                                 {{--<tbody>--}}
                                 {{--<tr>--}}
                                     {{--<td>1</td>--}}
-                                    {{--<td>NobleUI jQuery</td>--}}
+                                    {{--<td>Mairie jQuery</td>--}}
                                     {{--<td>01/01/2019</td>--}}
                                     {{--<td>26/04/2019</td>--}}
                                     {{--<td><span class="badge badge-danger">Released</span></td>--}}

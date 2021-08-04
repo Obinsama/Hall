@@ -40,11 +40,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>2021</td>
-                                    <td>7 054 000 FCFA</td>
-                                    <td>204 000 FCFA</td>
-                                    <td>6 850 000 FCFA</td>
+                                <tr v-for="budgetItem in budget ">
+                                    <td>{{budgetItem.periode}}</td>
+                                    <td>{{budgetItem.montant}}</td>
+                                    <td>{{depenseBudget(budgetItem.periode)}}</td>
+                                    <td>{{budgetItem.montant-depenseBudget(budgetItem.periode)}}</td>
                                     <td>
                                         <a class="mx-2 " href="#" title="Arreter l'exécution">
                                             <feather-icon type="x-circle" stroke="red"></feather-icon>
@@ -69,7 +69,7 @@
                                     <th>Origine</th>
                                     <th>Montant</th>
                                     <th>Statut</th>
-                                    <th>Action</th>
+<!--                                    <th>Action</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -77,11 +77,11 @@
                                     <td>vente timbre</td>
                                     <td>7 054 000 FCFA</td>
                                     <td>Termine</td>
-                                    <td>
-                                        <a class="mx-2 " href="#" title="Arreter l'exécution">
-                                            <feather-icon type="x-circle" stroke="red"></feather-icon>
-                                        </a>
-                                    </td>
+<!--                                    <td>-->
+<!--                                        <a class="mx-2 " href="#" title="Arreter l'exécution">-->
+<!--                                            <feather-icon type="x-circle" stroke="red"></feather-icon>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
                                 </tr>
                                 </tbody>
                             </table>
@@ -100,20 +100,20 @@
                                     <!--                                    <th>#</th>-->
                                     <th>Motif</th>
                                     <th>Montant</th>
-                                    <th>Statut</th>
-                                    <th>Action</th>
+                                    <th>Date</th>
+<!--                                    <th>Action</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>achat de terrain</td>
-                                    <td>7 054 000 FCFA</td>
-                                    <td>Termine</td>
-                                    <td>
-                                        <a class="mx-2 " href="#" title="Arreter l'exécution">
-                                            <feather-icon type="x-circle" stroke="red"></feather-icon>
-                                        </a>
-                                    </td>
+                                <tr v-for="depenseItem in depenses">
+                                    <td>{{depenseItem.libelle}}</td>
+                                    <td>{{depenseItem.montant}}</td>
+                                    <td>{{depenseItem.created_at}}</td>
+<!--                                    <td>-->
+<!--                                        <a class="mx-2 " href="#" title="Arreter l'exécution">-->
+<!--                                            <feather-icon type="x-circle" stroke="red"></feather-icon>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
                                 </tr>
                                 </tbody>
                             </table>
@@ -133,14 +133,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="budgetForm">
                             <div class="row">
                                 <div class="col-md-12">
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-12">Libelle
-                                            <input type="text" class="form-control" name="libelle" placeholder="label"  ></label>
-                                    </div>
 
                                     <div class="form-group">
                                         <label class="control-label col-md-12">Periode
@@ -175,7 +170,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="recetteForm">
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -212,7 +207,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="depenseForm">
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -232,7 +227,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal"
-                                @click.prevent="saveRecette">Enregistrer</button>
+                                @click.prevent="saveDepense">Enregistrer</button>
 
                     </div>
                 </div>
@@ -243,8 +238,63 @@
 
 <script>
     export default {
-        name: "GestionBudget"
+        name: "GestionBudget",
+        created(){
+            this.$store.dispatch('AllDepensesFromDatabase');
+            this.$store.dispatch('AllBudgetFromDatabase');
+        },
+        methods:{
+            saveBudget(){
+                var budget= new FormData(document.getElementById('budgetForm'));
+                // let role=this.$store.getters.getRole;
+                //console.log('emit',formData);
+                //this.$store.dispatch('saveRole',formData);
+                this.$store.dispatch('saveBudget',budget);
+                this.$store.dispatch('AllBudgetFromDatabase');
+            },
+            saveRecette(){
+                var recette= new FormData(document.getElementById('recetteForm'));
+                this.$store.dispatch('saveRecette',recette);
+            },
+            saveDepense(){
+                var depense= new FormData(document.getElementById('depenseForm'));
+                this.$store.dispatch('saveDepense',depense);
+                this.$store.dispatch('AllDepensesFromDatabase');
+            },
+            depenseYear(year){
+                return '${year}';
+            }
+        },
+        computed:{
+            budget(){
+                return this.$store.getters.getBudget;
+            },
+            depenses(){
+                return this.$store.getters.getDepenses;
+            },
+            depenseBudget(){
+
+                return function(year){
+                    let somme=0;
+                    var depense;
+                    depense=this.depenses.filter(function (obj) {
+                        // console.log('depensesAnnee',((obj.created_at).split(' ')[0]).split('-')[0]);
+                        return ((obj.created_at).split(' ')[0]).split('-')[0]==year;
+                    });
+                    depense.forEach(function (element) {
+                        somme = somme + parseInt(element.montant);
+                    });
+                    //console.log('depensesBudget',depense);
+                    //console.log('depenses',this.depenses);
+                    return somme;
+                }
+            },
+            reste(){
+                return this.budget-this.depenseBudget;
+            }
+        },
     }
+
 </script>
 
 <style scoped>

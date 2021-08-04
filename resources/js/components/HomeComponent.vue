@@ -186,7 +186,7 @@
                                 <tbody>
                                 <tr>
                                     <td>Total des Ventes :</td>
-                                    <td class="col-md-2">{{liste_ventes.data.length}}</td>
+                                    <td class="col-md-2">{{liste_ventes.length}}</td>
                                     <td>{{(revenu).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}}</td>
                                 </tr>
                                 <tr>
@@ -219,7 +219,7 @@
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr v-for="vente in liste_ventes.data.slice(0,5)">
+                                <tr v-for="vente in liste_ventes.slice(0,5)">
                                     <td>{{vente.id}}</td>
                                     <td>
                                         <router-link class=" mx-2" href="#" title="Voir Facture" :to="'/impression/'+vente.id"  v-show="vente.statut=='termine'"> {{vente.ref}}</router-link>
@@ -246,7 +246,7 @@
 
             }
         },
-        mounted(){
+        created(){
             this.$store.dispatch('allVentesFromDatabase');
             this.$store.dispatch('allWorkersFromDatabase');
         },
@@ -255,13 +255,21 @@
         },
         computed:{
             liste_ventes(){
-                return  this.$store.getters.getVenteList;
+                var liste=this.$store.getters.getVenteList;
+                if (liste.data){
+                    return liste.data;
+                }
+                else{
+                    return '';
+                }
+
             },
             ventes(){
                 return this.$store.getters.getVente;
             },
             revenu(){
-                return this.$store.getters.getRevenu;
+                // return this.$store.getters.getRevenu;
+               return   400000;
             },
             liste_personnel(){
                 return this.$store.getters.getAllWorkers;

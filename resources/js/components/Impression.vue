@@ -11,13 +11,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <img style="padding-top:10px;margin-left:43%" :src="arm" alt="" width="85px" >
                         <div class="container-fluid d-flex justify-content-between">
+
+
                             <div class="col-lg-3 pl-0">
-                                <a href="#" class="noble-ui-logo d-block mt-3">Noble<span>UI</span></a>
-                                <p class="mt-1 mb-1"><b>NobleUI Themes</b></p>
+                                <!--                                <a href="#" class="noble-ui-logo d-block mt-3">e<span>City</span></a>-->
+                                <!--                                <p class="mt-1 mb-1"><b>eCity</b></p>-->
+
+
                                 <p>108,<br> Great Russell St,<br>London, WC1B 3NA.</p>
                                 <h5 class="mt-5 mb-2 text-muted">Client  :</h5>
-<!--                                TODO Ajouter dynamiquement le nom du client-->
+                                <!--                                TODO Ajouter dynamiquement le nom du client-->
                                 <p>Joseph&nbsp;E&nbsp;Carr,<br> 102, 102  Crown Street,<br> London, W3 3PR.</p>
                             </div>
                             <div class="col-lg-4 pr-0">
@@ -72,6 +77,12 @@
 <script>
     export default {
         name: "Impression",
+        data(){
+            return{
+                arm:'../assets/images/logo.jpg',
+            }
+
+        },
         created(){
             this.$store.dispatch('allFactureData',this.$route.params.id);
         },

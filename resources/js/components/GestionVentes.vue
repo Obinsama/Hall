@@ -116,7 +116,7 @@
 
             }
         },
-        mounted(){
+        created(){
             this.$store.dispatch('allVentesFromDatabase');
         },
         methods:{

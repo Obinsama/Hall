@@ -38,7 +38,8 @@
                                     <td><img :src="people.photo" alt="Photo" width="10px" style="border-radius:50%"></td>
                                     <td>{{people.nom}}</td>
                                     <td>{{people.poste}} </td>
-                                    <td>{{(people.salaire).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </td>
+<!--                                    <td>{{(people.salaire).toLocaleString('fr-FR',{style:'currency',currency:'XAF'})}} </td>-->
+                                    <td>{{people.salaire}} FCFA </td>
                                     <td>
                                         <div class="px-0" style="text-align:center">
                                             <a class="mx-2 " href="#" title="Voir le profil"
@@ -238,7 +239,13 @@
         computed:{
 
             peoples(){
-                    return this.$store.getters.getAllWorkers;
+                var pers=this.$store.getters.getAllWorkers;
+                if(pers){
+                    return pers;
+                }else{
+                    return '';
+                }
+
             },
             Listeroles(){
                 return this.$store.getters.getRoles;

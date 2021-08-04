@@ -76,6 +76,11 @@ export default {
             api_token:'',
             roles:''
         },
+        budget:[],
+        depenses:[],
+        messages:[],
+        message:0,
+        unread:0,
         ListeEquipements: {},
         role:{
             name:'',
@@ -206,10 +211,12 @@ export default {
         },
         getRevenu(state){
             let montant=0;
-            state.ListeVentes.data.forEach(function (element) {
+            if(state.ListeVentes.data.length!=0){
+                state.ListeVentes.data.forEach(function (element) {
                 montant = montant + parseInt(element.montant);
             });
-            return montant
+            }
+            return montant;
         },
         getMasseSalariale(state){
             let total_salaires=0;
@@ -217,6 +224,27 @@ export default {
                 total_salaires = total_salaires + parseInt(element.salaire);
             });
             return total_salaires
+        },
+        getDepenses(state){
+            return state.depenses;
+        },
+        getBudget(state){
+            return state.budget;
+        },
+        getMessages(state){
+            return state.messages;
+        },
+        getUnread(state){
+            var nbr=0;
+            state.messages.forEach(function (obj) {
+                if(obj.status==10){
+                    nbr=nbr+1;
+                }
+            });
+            return nbr;
+        },
+        getMessage(state){
+            return state.message;
         }
     },
 
@@ -244,7 +272,7 @@ export default {
         allWorkersFromDatabase(context){
             axios.get("/users")
                 .then((response) => {
-                     console.log(response);
+                     // console.log('workers',response);
                     context.commit("LOAD_WORKER_LIST", response.data.data) //categories will be run from mutation
                 })
                 .catch(() => {
@@ -275,8 +303,8 @@ export default {
         allVentesFromDatabase(context) {
             axios.get("/ventes")
                 .then((response) => {
-                    context.commit("LOAD_VENTE_LIST", response.data) //categories will be run from mutation
-                    // console.log(response);
+                    context.commit("LOAD_VENTE_LIST", response.data) ;//categories will be run from mutation
+                     console.log('liste des ventes',response.data.data);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -302,12 +330,12 @@ export default {
                 })
         },
         allVentesFromFacture(context, data) {
-            console.log(data)
+            // console.log(data)
             axios.get("/factures/details/" + data.id, data)
                 .then((response) => {
                     context.commit('UPDATE_VENTE', response.data);
                     // context.commit("LOAD_PRESTATION_LIST", response.data) //categories will be run from mutation
-                    console.log(response);
+                    // console.log('ventes',response);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -316,8 +344,38 @@ export default {
         allFactureData(context, data) {
             axios.get("/factures/data/" + data, data)
                 .then((response) => {
-                    console.log('response', response.data)
+                    // console.log('facture', response.data)
                     context.commit('UPDATE_FACTURE_DATA', response.data);
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        AllDepensesFromDatabase(context){
+            axios.get("/depense")
+                .then((response) => {
+                    // console.log('depense', response.data)
+                    context.commit('UPDATE_DEPENSES_DATA', response.data);
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        AllBudgetFromDatabase(context){
+            axios.get("/budget")
+                .then((response) => {
+                    // console.log('budget', response.data)
+                    context.commit('UPDATE_BUDGET_DATA', response.data);
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        allMessagesFromDatabase(context){
+            axios.get("/message")
+                .then((response) => {
+                    // console.log('messages', response.data)
+                    context.commit('UPDATE_MESSAGES_DATA', response.data);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -328,6 +386,17 @@ export default {
                 .then((response) => {
                     // console.log('response', response)
                     windows.location.href('/home')
+                })
+                .catch(() => {
+                    console.log("Error........")
+                })
+        },
+        makeReaded(context, data){
+
+            axios.patch("/message/"+data.id,data)
+                .then((response) => {
+                    console.log('massageUpdated', response.data);
+                    // context.commit('UPDATE_MESSAGES_DATA', response.data);
                 })
                 .catch(() => {
                     console.log("Error........")
@@ -413,6 +482,24 @@ export default {
                 console.log(error)
             });
         },
+        saveBudget(context,data){
+            axios.post('/budget', data).then((response) => {
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        saveRecette(context,data){
+            axios.post('/recette', data).then((response) => {
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        saveDepense(context,data){
+            axios.post('/depense', data).then((response) => {
+            }, (error) => {
+                console.log(error)
+            });
+        },
         updateEquipementData(context, data) {
             axios.put('/equipements/' + data.id, data).then((response) => {
             }, (error) => {
@@ -460,11 +547,11 @@ export default {
             });
         },
         searchWorkers(context,data){
-            console.log('search',data);
+            // console.log('search',data);
             axios.post('/users/search',data).then((response) => {
                 context.commit("LOAD_WORKER_LIST", response.data) //categories will be run from mutation
 
-                console.log(response)
+                // console.log('worker',response)
             }, (error) => {
                 console.log(error)
             });
@@ -501,6 +588,18 @@ export default {
             state.ListeEquipements.data.filter(function (obj) {
                 return obj.id == data.id;
             });
+        },
+        UPDATE_MESSAGE(state,data){
+            state.message=data;
+        },
+        UPDATE_MESSAGES_DATA(state,data){
+            state.messages=data;
+        },
+        UPDATE_BUDGET_DATA(state,data){
+            state.budget=data;
+        },
+        UPDATE_DEPENSES_DATA(state,data){
+            state.depenses=data;
         },
         UPDATE_VENTE(state, data) {
             state.Vente.Equipements = data;
@@ -574,7 +673,7 @@ export default {
             };
         },
         RELOAD_PERSONNEL(state,data) {
-            console.log('personnel',data);
+            // console.log('personnel',data);
             return state.Personnel = data;
         },
         ADD_TO_CART(state, data) {
