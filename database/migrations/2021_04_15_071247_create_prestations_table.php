@@ -16,7 +16,7 @@ class CreatePrestationsTable extends Migration
         Schema::create('prestations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('service_id')->unique();
-            $table->foreign('service_id')->references('service_id')->on('services');
+            $table->foreign('service_id')->references('id')->on('services');
             $table->string('type');
             $table->integer('cout');
             $table->dateTime('delai');
