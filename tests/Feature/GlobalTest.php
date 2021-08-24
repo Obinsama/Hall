@@ -16,7 +16,8 @@ class GlobalTest extends TestCase
     public function testExample()
     {
 //        $service = factory(\Hall\Service::class,5)->create();
-        $equipement = factory(\Hall\Equipement::class,15)->create();
+ //       $equipement = factory(\Hall\Equipement::class,15)->create();
+        $user = factory(\Hall\User::class,1)->create();
 //        $prestation = factory(\Hall\Prestation::class,5)->create();
 //        $ventes = factory(\Hall\Vente::class,5)->create();
 
