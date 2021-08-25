@@ -11,7 +11,7 @@ class ClientSeed extends Seeder
      */
     public function run()
     {
-        $client = Client::create([
+        $client = \Hall\Client::create([
             'nom' => 'Rahul Shukla',
             'prenom' => 'Rahul Shukla',
             'cni' => '2466555656',
