@@ -56,7 +56,7 @@ class FacturesController extends Controller
         $vente=json_decode($request->getContent(),true);
         $ref=strtoupper(substr('FAC',0,3)).'-'.strtoupper(Date('D')).time();
         $facture=new Facture();
-        $facture->client_id=0;
+        $facture->client_id=1;
         $facture->ref=$ref;
         $facture->user_id=Auth::id();
         $facture->date_facturation=date('Y-m-d H:i:s');
