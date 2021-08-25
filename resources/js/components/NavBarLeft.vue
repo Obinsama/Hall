@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <a href="#" class="sidebar-brand" style="">
 <!--                e<span>City</span>-->
-                <img id="image" style="float: left" :src="arm" alt="" width="65px"  >
+                <img id="logo" style="float: left" :src="logo" alt="" width="65px"  >
             </a>
 
             <div class="sidebar-toggler active" @click.prevent="hide">
@@ -22,12 +22,12 @@
         name: "NavBarLeft",
         data(){
             return{
-                arm:'../assets/images/logo.jpg',
+                logo:'../assets/images/logo.jpg',
             }
         },
         methods:{
             hide(e){
-                var img =document.getElementById('image');
+                var img =document.getElementById('logo');
                 img.toggle();
             }
         },

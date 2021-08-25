@@ -235,7 +235,7 @@
         name: "NavBarUp",
         data(){
             return{
-                arm:'../assets/images/logo.jpg',
+                logo:'../assets/images/logo.jpg',
                 info: document.querySelector("meta[name='user']").getAttribute('content')
             }
         },
