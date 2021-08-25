@@ -16,7 +16,7 @@ class AssignRole extends Seeder
     public function run()
     {
         $user=User::where('id',1)->get();
-        $role=Role::where('id',1)->get();
+        $role=Role::where('name','Admin')->get();
         $user->assignRole($role);
     }
 }
