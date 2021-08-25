@@ -17,6 +17,6 @@ class AssignRole extends Seeder
     {
         $user=User::where('id',1)->get();
         $role=Role::where('id',1)->get();
-        $user->assignRole([$role->id]);
+        $user->assignRole($role);
     }
 }
