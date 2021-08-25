@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Hall\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AssignRole extends Seeder
+
 {
     /**
      * Run the database seeds.
