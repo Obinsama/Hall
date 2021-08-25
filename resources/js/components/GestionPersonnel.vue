@@ -171,7 +171,6 @@
     export default {
         name: "GestionPersonnel",
         data(){
-
             return{
                 profile_pic:'../assets/images/index.jpg',
                 update:false,
@@ -189,7 +188,8 @@
                 reader.addEventListener('load', function(){
                     this.profile_pic=reader.result;
                     image.src=this.profile_pic;
-                    this.personnel.photo=this.profile_pic;
+                    this.$store.commit('UPDATE_PERSONNEL_PICTURE',this.profile_pic);
+                    //this.personnel.photo=this.profile_pic;
                 }.bind(this), false);
                 reader.readAsDataURL(selectedFiles[0]);
             },

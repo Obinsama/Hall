@@ -604,6 +604,9 @@ export default {
         UPDATE_VENTE(state, data) {
             state.Vente.Equipements = data;
         },
+        UPDATE_PERSONNEL_PICTURE(state,data){
+            state.Personnel.photo=data;
+        },
         LOAD_EQUIPEMENT_LIST(state, data) {
             return state.ListeEquipements = data;
         },

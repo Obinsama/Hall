@@ -84547,6 +84547,9 @@ var Vente = function () {
         UPDATE_VENTE: function UPDATE_VENTE(state, data) {
             state.Vente.Equipements = data;
         },
+        UPDATE_PERSONNEL_PICTURE: function UPDATE_PERSONNEL_PICTURE(state, data) {
+            state.Personnel.photo = data;
+        },
         LOAD_EQUIPEMENT_LIST: function LOAD_EQUIPEMENT_LIST(state, data) {
             return state.ListeEquipements = data;
         },
@@ -87118,7 +87121,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "GestionPersonnel",
     data: function data() {
-
         return {
             profile_pic: '../assets/images/index.jpg',
             update: false,
@@ -87136,7 +87138,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             reader.addEventListener('load', function () {
                 this.profile_pic = reader.result;
                 image.src = this.profile_pic;
-                this.personnel.photo = this.profile_pic;
+                this.$store.commit('UPDATE_PERSONNEL_PICTURE', this.profile_pic);
+                //this.personnel.photo=this.profile_pic;
             }.bind(this), false);
             reader.readAsDataURL(selectedFiles[0]);
         },
