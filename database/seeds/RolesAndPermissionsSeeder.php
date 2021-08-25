@@ -11,11 +11,11 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
-        Permission::create(['name' => 'edit-user']);
-        Permission::create(['name' => 'delete-user']);
-        Permission::create(['name' => 'add-user']);
-        Permission::create(['name' => 'list-user']);
-        Permission::create(['name' => 'role-list']);
+//        Permission::create(['name' => 'edit-user']);
+//        Permission::create(['name' => 'delete-user']);
+//        Permission::create(['name' => 'add-user']);
+//        Permission::create(['name' => 'list-user']);
+//        Permission::create(['name' => 'role-list']);
         Permission::create(['name' => 'role-create']);
         Permission::create(['name' => 'role-edit']);
         Permission::create(['name' => 'role-delete']);
