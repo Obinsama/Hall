@@ -222,12 +222,14 @@
                 this.$store.commit('RELOAD_PERSONNEL',people);
                 this.update=true;
                 image.src=people.photo;
+                this.$store.dispatch('allWorkersFromDatabase');
             },
             createWorker(){
                 this.update=false;
                 this.$store.commit('CLEAR_PERSONNEL');
                 var image=document.getElementById('image');
                 image.src=this.profile_pic;
+                this.$store.dispatch('allWorkersFromDatabase');
             }
 
 

@@ -269,7 +269,11 @@
             },
             revenu(){
                 // return this.$store.getters.getRevenu;
-               return   400000;
+                var somme=0;
+                this.liste_ventes.forEach(function (item) {
+                   somme=somme+item.montant;
+                });
+               return   somme;
             },
             liste_personnel(){
                 return this.$store.getters.getAllWorkers;
