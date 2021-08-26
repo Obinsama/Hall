@@ -87192,11 +87192,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         peoples: function peoples() {
             var pers = this.$store.getters.getAllWorkers;
-            if (pers) {
-                return pers;
-            } else {
-                return '';
-            }
+            // if(pers){
+            //     return pers;
+            // }else{
+            //     return '';
+            // }
         },
         Listeroles: function Listeroles() {
             return this.$store.getters.getRoles;

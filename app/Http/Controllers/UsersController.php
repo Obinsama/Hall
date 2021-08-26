@@ -27,7 +27,7 @@ class UsersController extends Controller
             $data='Bonjour';
 //            return response()->json(request('search'));
         }else{
-            $data = User::orderBy('id','DESC')->paginate(5);
+            $data = User::orderBy('id','DESC')->get();
             return response()->json($data);
         }
         return response()->json(request('search'));
