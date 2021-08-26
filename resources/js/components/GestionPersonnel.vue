@@ -33,7 +33,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="people in peoples">
+                                <tr v-for="people in listPeoples.data">
                                     <!--                                    <td>{{people.id}}</td>-->
                                     <td><img :src="people.photo" alt="Photo" width="10px" style="border-radius:50%"></td>
                                     <td>{{people.nom}}</td>
@@ -63,6 +63,8 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <pagination :data="listPeoples" @pagination-change-page="getResults"
+                                        class="mt-5 mx-auto "></pagination>
                         </div>
                     </div>
                 </div>
@@ -168,7 +170,9 @@
 </template>
 
 <script>
+    import pagination from 'laravel-vue-pagination';
     export default {
+        components:{pagination,},
         name: "GestionPersonnel",
         data(){
             return{
@@ -180,6 +184,9 @@
             }
         },
         methods:{
+            getResults(page = 1) {
+                this.$store.dispatch('getWorkersResultsFromDataBase', page)
+            },
             preview(e){
                 var image=document.getElementById('image');
                 let comp=e.target;
@@ -235,20 +242,22 @@
 
         },
         created(){
+            this.$store.dispatch('listWorkersFromDatabase');
             this.$store.dispatch('allWorkersFromDatabase');
             this.$store.dispatch('allRolesFromDatabase');
         },
         computed:{
 
-            peoples(){
-                var pers=this.$store.getters.getAllWorkers;
+
+            listPeoples(){
+                var pers=this.$store.getters.getWorkers;
                 if(pers){
                     return pers;
                 }else{
                     return '';
                 }
-
             },
+
             Listeroles(){
                 return this.$store.getters.getRoles;
             },
@@ -256,7 +265,7 @@
                 return this.$store.getters.getPersonnel;
             },
             totalSalaires(){
-                return this.$store.getters.getTotalSalaires;
+                return this.$store.getters.getMasseSalariale;
             }
         }
     }

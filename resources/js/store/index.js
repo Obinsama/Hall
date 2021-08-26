@@ -39,6 +39,7 @@ export default {
     state: {
         date: new Date(),
         ListePersonnel:[{}],
+        ListeCompletePersonnel:[],
         ListeRoles:[],
         ListePermissions:[],
         Personnel:{
@@ -181,6 +182,9 @@ export default {
             return state.FactureData;
         },
         getAllWorkers(state){
+            return state.ListeCompletePersonnel;
+        },
+        getWorkers(state){
             return state.ListePersonnel;
         },
         getPersonnel(state){
@@ -188,7 +192,7 @@ export default {
         },
         getTotalSalaires(state){
             let somme = 0;
-            state.ListePersonnel.forEach(function (element) {
+            state.ListePersonnel.data.forEach(function (element) {
                 somme = somme + parseInt(element.salaire);
             });
 
@@ -220,7 +224,7 @@ export default {
         },
         getMasseSalariale(state){
             let total_salaires=0;
-            state.ListePersonnel.forEach(function (element) {
+            state.ListeCompletePersonnel.forEach(function (element) {
                 total_salaires = total_salaires + parseInt(element.salaire);
             });
             return total_salaires
@@ -272,12 +276,30 @@ export default {
         allWorkersFromDatabase(context){
             axios.get("/users")
                 .then((response) => {
-                     // console.log('workers',response);
-                    context.commit("LOAD_WORKER_LIST", response.data.data) //categories will be run from mutation
+                     console.log('allworkers',response);
+                    context.commit("LOAD_FULL_WORKER_LIST", response.data);
                 })
                 .catch(() => {
                     console.log("Error........")
                 })
+        },
+        listWorkersFromDatabase(context,data){
+            // console.log('search',data);
+            axios.post('/users/list',data).then((response) => {
+                console.log('listworker',response);
+                context.commit("LOAD_WORKER_LIST", response.data)
+                console.log('listworker',response)
+            }, (error) => {
+                console.log(error)
+            });
+        },
+        getWorkersResultsFromDataBase(context, data) {
+            axios.post('/users/list?page=' + data).then((response) => {
+                console.log(response.data);
+                context.commit("LOAD_WORKER_LIST", response.data) //categories will be run from mutation
+            }, (error) => {
+                console.log(error)
+            });
         },
         allEquipementFromDatabase(context) {
             axios.get("/equipements")
@@ -556,6 +578,7 @@ export default {
                 console.log(error)
             });
         },
+
         test(){
             const options = {
                 headers: {'X-Custom-Header': 'value'}
@@ -618,6 +641,9 @@ export default {
         },
         LOAD_WORKER_LIST(state, data) {
             return state.ListePersonnel = data;
+        },
+        LOAD_FULL_WORKER_LIST(state, data) {
+            return state.ListeCompletePersonnel = data;
         },
         LOAD_PERMISSION_LIST(state, data) {
             return state.ListePermissions = data;

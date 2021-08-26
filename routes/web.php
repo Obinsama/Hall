@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function() {
 //    });
     Route::get('users/connected', 'UsersController@connected')->name('users.connected');
     Route::post('users/search', 'UsersController@search');
+    Route::post('users/list', 'UsersController@list');
     Route::get('factures/details/{id}', 'FacturesController@details');
     Route::get('factures/data/{id}', 'FacturesController@data');
 });

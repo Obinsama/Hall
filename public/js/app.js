@@ -84017,6 +84017,7 @@ var Vente = function () {
     state: {
         date: new Date(),
         ListePersonnel: [{}],
+        ListeCompletePersonnel: [],
         ListeRoles: [],
         ListePermissions: [],
         Personnel: {
@@ -84160,6 +84161,9 @@ var Vente = function () {
             return state.FactureData;
         },
         getAllWorkers: function getAllWorkers(state) {
+            return state.ListeCompletePersonnel;
+        },
+        getWorkers: function getWorkers(state) {
             return state.ListePersonnel;
         },
         getPersonnel: function getPersonnel(state) {
@@ -84167,7 +84171,7 @@ var Vente = function () {
         },
         getTotalSalaires: function getTotalSalaires(state) {
             var somme = 0;
-            state.ListePersonnel.forEach(function (element) {
+            state.ListePersonnel.data.forEach(function (element) {
                 somme = somme + parseInt(element.salaire);
             });
 
@@ -84199,7 +84203,7 @@ var Vente = function () {
         },
         getMasseSalariale: function getMasseSalariale(state) {
             var total_salaires = 0;
-            state.ListePersonnel.forEach(function (element) {
+            state.ListeCompletePersonnel.forEach(function (element) {
                 total_salaires = total_salaires + parseInt(element.salaire);
             });
             return total_salaires;
@@ -84246,10 +84250,28 @@ var Vente = function () {
         },
         allWorkersFromDatabase: function allWorkersFromDatabase(context) {
             axios.get("/users").then(function (response) {
-                // console.log('workers',response);
-                context.commit("LOAD_WORKER_LIST", response.data.data); //categories will be run from mutation
+                console.log('allworkers', response);
+                context.commit("LOAD_FULL_WORKER_LIST", response.data);
             }).catch(function () {
                 console.log("Error........");
+            });
+        },
+        listWorkersFromDatabase: function listWorkersFromDatabase(context, data) {
+            // console.log('search',data);
+            axios.post('/users/list', data).then(function (response) {
+                console.log('listworker', response);
+                context.commit("LOAD_WORKER_LIST", response.data);
+                console.log('listworker', response);
+            }, function (error) {
+                console.log(error);
+            });
+        },
+        getWorkersResultsFromDataBase: function getWorkersResultsFromDataBase(context, data) {
+            axios.post('/users/list?page=' + data).then(function (response) {
+                console.log(response.data);
+                context.commit("LOAD_WORKER_LIST", response.data); //categories will be run from mutation
+            }, function (error) {
+                console.log(error);
             });
         },
         allEquipementFromDatabase: function allEquipementFromDatabase(context) {
@@ -84561,6 +84583,9 @@ var Vente = function () {
         },
         LOAD_WORKER_LIST: function LOAD_WORKER_LIST(state, data) {
             return state.ListePersonnel = data;
+        },
+        LOAD_FULL_WORKER_LIST: function LOAD_FULL_WORKER_LIST(state, data) {
+            return state.ListeCompletePersonnel = data;
         },
         LOAD_PERMISSION_LIST: function LOAD_PERMISSION_LIST(state, data) {
             return state.ListePermissions = data;
@@ -86941,7 +86966,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -86952,6 +86977,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination__);
+//
+//
 //
 //
 //
@@ -87122,7 +87151,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: { pagination: __WEBPACK_IMPORTED_MODULE_0_laravel_vue_pagination___default.a },
     name: "GestionPersonnel",
     data: function data() {
         return {
@@ -87134,6 +87165,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        getResults: function getResults() {
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            this.$store.dispatch('getWorkersResultsFromDataBase', page);
+        },
         preview: function preview(e) {
             var image = document.getElementById('image');
             var comp = e.target;
@@ -87185,18 +87221,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     created: function created() {
+        this.$store.dispatch('listWorkersFromDatabase');
         this.$store.dispatch('allWorkersFromDatabase');
         this.$store.dispatch('allRolesFromDatabase');
     },
 
     computed: {
-        peoples: function peoples() {
-            var pers = this.$store.getters.getAllWorkers;
-            // if(pers){
-            //     return pers;
-            // }else{
-            //     return '';
-            // }
+        listPeoples: function listPeoples() {
+            var pers = this.$store.getters.getWorkers;
+            if (pers) {
+                return pers;
+            } else {
+                return '';
+            }
         },
         Listeroles: function Listeroles() {
             return this.$store.getters.getRoles;
@@ -87205,7 +87242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters.getPersonnel;
         },
         totalSalaires: function totalSalaires() {
-            return this.$store.getters.getTotalSalaires;
+            return this.$store.getters.getMasseSalariale;
         }
     }
 });
@@ -87317,130 +87354,146 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "table-responsive" }, [
-              _c(
-                "table",
-                {
-                  staticClass: "table ",
-                  staticStyle: { "text-align": "center" }
-                },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _vm._l(_vm.peoples, function(people) {
-                        return _c("tr", [
-                          _c("td", [
-                            _c("img", {
-                              staticStyle: { "border-radius": "50%" },
-                              attrs: {
-                                src: people.photo,
-                                alt: "Photo",
-                                width: "10px"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(people.nom))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(people.poste) + " ")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(people.salaire) + " FCFA ")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "px-0",
-                                staticStyle: { "text-align": "center" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "mx-2 ",
-                                    attrs: {
-                                      href: "#",
-                                      title: "Voir le profil",
-                                      "data-toggle": "modal",
-                                      "data-target": ".newModal"
+            _c(
+              "div",
+              { staticClass: "table-responsive" },
+              [
+                _c(
+                  "table",
+                  {
+                    staticClass: "table ",
+                    staticStyle: { "text-align": "center" }
+                  },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      [
+                        _vm._l(_vm.listPeoples.data, function(people) {
+                          return _c("tr", [
+                            _c("td", [
+                              _c("img", {
+                                staticStyle: { "border-radius": "50%" },
+                                attrs: {
+                                  src: people.photo,
+                                  alt: "Photo",
+                                  width: "10px"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(people.nom))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(people.poste) + " ")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(people.salaire) + " FCFA ")
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "px-0",
+                                  staticStyle: { "text-align": "center" }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "mx-2 ",
+                                      attrs: {
+                                        href: "#",
+                                        title: "Voir le profil",
+                                        "data-toggle": "modal",
+                                        "data-target": ".newModal"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editProfile(people)
+                                        }
+                                      }
                                     },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editProfile(people)
+                                    [
+                                      _c("feather-icon", {
+                                        attrs: { type: "edit", stroke: "blue" }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "mx-2 ",
+                                      attrs: { href: "#", title: "Licencier" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.licencier(people)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _c("feather-icon", {
-                                      attrs: { type: "edit", stroke: "blue" }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "mx-2 ",
-                                    attrs: { href: "#", title: "Licencier" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.licencier(people)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("feather-icon", {
-                                      attrs: { type: "trash-2", stroke: "red" }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ]
-                            )
+                                    },
+                                    [
+                                      _c("feather-icon", {
+                                        attrs: {
+                                          type: "trash-2",
+                                          stroke: "red"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ])
                           ])
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "tr",
-                        {
-                          staticStyle: {
-                            "font-size": "30px",
-                            "font-weight": "bold",
-                            color: "red",
-                            "background-color": "#f9fafb"
-                          }
-                        },
-                        [
-                          _c("td"),
-                          _vm._v(" "),
-                          _c("td", [_vm._v("Masse Salariale : ")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              _vm._s(
-                                _vm.totalSalaires.toLocaleString("fr-FR", {
-                                  style: "currency",
-                                  currency: "XAF"
-                                })
-                              ) + " "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td")
-                        ]
-                      )
-                    ],
-                    2
-                  )
-                ]
-              )
-            ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "tr",
+                          {
+                            staticStyle: {
+                              "font-size": "30px",
+                              "font-weight": "bold",
+                              color: "red",
+                              "background-color": "#f9fafb"
+                            }
+                          },
+                          [
+                            _c("td"),
+                            _vm._v(" "),
+                            _c("td", [_vm._v("Masse Salariale : ")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.totalSalaires.toLocaleString("fr-FR", {
+                                    style: "currency",
+                                    currency: "XAF"
+                                  })
+                                ) + " "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td")
+                          ]
+                        )
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("pagination", {
+                  staticClass: "mt-5 mx-auto ",
+                  attrs: { data: _vm.listPeoples },
+                  on: { "pagination-change-page": _vm.getResults }
+                })
+              ],
+              1
+            )
           ])
         ])
       ])

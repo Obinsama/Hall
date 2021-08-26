@@ -22,19 +22,8 @@ class UsersController extends Controller
 
     {
 
-        if(request('search')){
-            $data['data']=User::where('nom','%'.request('search').'%')->get();
-            $data='Bonjour';
-//            return response()->json(request('search'));
-        }else{
-            $data = User::orderBy('id','DESC')->paginate(35);
+            $data = User::orderBy('id','DESC')->get();
             return response()->json($data);
-        }
-        return response()->json(request('search'));
-
-//        return view('users.index',compact('data'))
-//
-//            ->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
 
@@ -53,6 +42,11 @@ class UsersController extends Controller
         $user=User::select("*")->where('nom','LIKE','%'.$user.'%')->get();
 
         return response()->json($user);
+
+    }
+    public function list(){
+        $data = User::orderBy('id','DESC')->paginate(5);
+        return response()->json($data);
 
     }
 
