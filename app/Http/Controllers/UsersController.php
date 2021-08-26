@@ -39,7 +39,7 @@ class UsersController extends Controller
      */
     public function search(Request $request){
         $user=$request->content;
-        $user=User::select("*")->where('nom','LIKE','%'.$user.'%')->get();
+        $user=User::select("*")->where('nom','LIKE','%'.$user.'%')->paginate(5);
 
         return response()->json($user);
 
