@@ -242,11 +242,11 @@
 
             peoples(){
                 var pers=this.$store.getters.getAllWorkers;
-                if(pers){
-                    return pers;
-                }else{
-                    return '';
-                }
+                // if(pers){
+                //     return pers;
+                // }else{
+                //     return '';
+                // }
 
             },
             Listeroles(){
